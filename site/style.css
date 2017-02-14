@@ -12,7 +12,7 @@ body {
     transform: translateX(-50%);
     animation-duration: 3s;
     animation-fill-mode: forwards;
-    /*this parameter make it no comming back once the animation is done*/
+    /*this parameter make it not comming back once the animation is done*/
 }
 
 .bigcontainer {
