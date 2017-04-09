@@ -1,0 +1,1 @@
+function manageinput created now let's give it some utility
