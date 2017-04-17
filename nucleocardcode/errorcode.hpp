@@ -18,7 +18,7 @@ void resetled()
 
 void buttonisused()
 {
-    pc.printf("buttonincrementvalue: %d\n", buttonincrement);
+    printf("buttonincrementvalue: %d\n", buttonincrement);
     if (button) {
         printf("button is used\n");
         buttonincrement++;
@@ -63,7 +63,7 @@ void errorcode(int green, int blue, int red)
 
 void valueofbuttonincrement()
 {
-    pc.printf("starting resetled() \n");
+    printf("starting resetled() \n");
     resetled();
     for (int i=0; i<buttonincrement; ++i) {
         buttonisused();

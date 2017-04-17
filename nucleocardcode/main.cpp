@@ -1,71 +1,38 @@
 #include "errorcode.hpp"
 #include "dronecontroller.hpp"
+#include "Servo.h"
 
-using namespace std;
-char inputuservariable[]= "";
-string mystring= "";
-
-
+Servo myservo(PC_7);
+long double delay,waittime;
 int main()
 {
+    pc.baud(115200);
 
+    cout << "hello ! "<< endl;
+    cout << "please set a value for the percentage" << endl;
+    cin >> cycle;
+    cout << "checking the value is : " << percent << endl;
+    // percent += 0.000f;
+    cout <<  "adding the f to that value now we have: " << percent << endl;
+    delay = 1.000;
 
-    while(1) {
+    while (1) {
 
-        cout << "bon tu vas m'ecire un truck comme ca je peut savoir si c'est bon ou pas lel " << " ah et mystring pointeur est " << &mystring << endl;
+        xroll = a0.read();
+        ypitch = a1.read();
+        ythrottle = a2.read();
 
+        xpercent = x*percent;
+        ypercent = y*percent;
+        b = pa7.read();
+        
+        xv = a0.read_u16();
+        yv = a1.read_u16();
 
-        cin >> mystring;
-
-        cout << "bon tu as ecris " << mystring << " je lancerais une fonction pour traiter les donnees plus tard" << endl;
-
-        cout << "et le pointeur de mystring après edit est: " << &mystring << endl;
-
-        manageinput(mystring);
-
-    }
-
-
-
-    /*
-
-        pc6.period_ms(20);
-            pc6.write(0.50f);
-
-
-
-    */
-    /*
-    pc.printf("Hello World!\n");
-
-    while(1) {
-
-
-        if (errorstate == 1) {
-            errorcode(1, 1, 1);
-        }
-        if (errorstate == 2) {
-            pc.printf("starting blinkled \n");
-            blinkled();
-            buttonisused();
-            valueofbuttonincrement();
-        }
-
-        else {
-                pc.printf("pas d'erreur, cool :) \n");
-            break;
-        }
-    }
-     char c[] = "M@teo21";
-    cout << "bon bah c = " << c << endl;
-    while(1) {
-        if(c == "u") {
-            cout << "c is: " << c << endl;
-        }
-        if(c == "l") {
-            pc.printf("bon c'est d normalement mais bon c: %d \n", c);
-        }
+        cout << "x: " << x << ", y: " << y << ", b: " << b << ", x voltage: " << xv << ", y voltage: " << yv << ",x percent: " << xpercent << ", y percent: " << ypercent << " bouton used ? " << waiting << endl;
+        pwmtest(y,x);
+        indicatorandwaitingvalue();
 
     }
-    */
-};
+
+}
