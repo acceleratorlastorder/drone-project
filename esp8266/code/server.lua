@@ -1,9 +1,16 @@
--- a simple HTTP server
-srv = net.createServer(net.TCP)
-srv:listen(80, function(conn)
-    conn:on("receive", function(sck, payload)
-        print(payload)
-        sck:send("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n<h1> Hello, NodeMCU.</h1>")
-    end)
-    conn:on("sent", function(sck) sck:close() end)
-end)
+print("server start")
+sv = net.createServer(net.TCP, 50)
+
+function receiver(sck, data)
+  print(data)
+  sck:close()
+end
+
+if sv then
+  sv:listen(80, function(conn)
+    conn:on("receive", receiver)
+    conn:send("hello world")
+  end)
+end
+
+print("last line of the server file")
