@@ -10,9 +10,8 @@ function start() {
     //  keymap();
     gamepadlistener()
 };
-let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton,touchpad;
-
-
+let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
+let statusli = document.querySelectorAll(".status");
 
 function gamepadlistener() {
     window.addEventListener("gamepadconnected", function(e) {
@@ -21,29 +20,19 @@ function gamepadlistener() {
         console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
             gp.index, gp.id,
             gp.buttons.length, gp.axes.length);
-
+            let buttons,axes,buttonsnumber;
 
         setInterval(gamepadmapping, 250);
 
         function gamepadmapping() {
+          console.log("boutons: ", buttons);
             console.log("lel", gp);
-            let buttons = gp.buttons;
-            let axes = gp.axes;
-            let buttonsnumber = buttons.length;
-            square = buttons[0];
-            cross = buttons[1];
-            circle = buttons[2];
-            triangle = buttons[3];
-            l1 = buttons[4];
-            r1 = buttons[5];
-            l2 = buttons[6];
-            r2 = buttons[7];
-            share = buttons[8];
-            options = buttons[9];
-            l3 = buttons[10];
-            r3 = buttons[11];
-            psbutton = buttons[12];
-            touchpad = buttons[13];
+            buttons = gp.buttons;
+            axes = gp.axes;
+            buttonsnumber = buttons.length;
+            for (var i = 0; i < statusli.length; i++) {
+                statusli[i].innerHTML = buttons[i].pressed;
+            }
             console.log(axes);
             console.log("carré: ", buttons[0].pressed);
             console.log("croix: ", buttons[1].pressed);
@@ -66,16 +55,6 @@ function gamepadlistener() {
             console.log("nc: ", axes[0], "nc: ", axes[1]);
             console.log("nc: ", axes[2], "nc: ", axes[5]);
             console.log("nc: ", axes[4], "nc: ", axes[3]);
-
-            console.log("boutons: ", buttons);
-            /*          for (var i = 0; i < buttons.length; i++) {
-                let buttons[i] = buttons[i].pressed;
-                console.log("i: ", i, boutons, "bouton");
-            }
-            console.log("lollol", button0);
-*/
-
-
         }
     });
 
