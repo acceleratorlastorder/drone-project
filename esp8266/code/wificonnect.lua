@@ -1,7 +1,6 @@
 wifi.setmode(wifi.STATION)
 wifi.setphymode(wifi.PHYMODE_N)
 local ssidconfig = require ("ssidconfig")
-print("passé")
 wifi.sta.config(SSID,PASSWORD,false)
 -- register event callbacks for WiFi events
 wifi.sta.eventMonReg(wifi.STA_CONNECTING, function(previous_state)

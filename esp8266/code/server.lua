@@ -1,8 +1,9 @@
 print("server start")
 sv = net.createServer(net.TCP, 50)
-
+local uartmanager = require ("uartmanager")
 function receiver(sck, data)
-  print(data)
+  uartmanager.sendData(data)
+  print("data received: ", data , " sck: ", sck)
   sck:close()
 end
 
