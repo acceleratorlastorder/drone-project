@@ -10,8 +10,24 @@ function start() {
     //  keymap();
     gamepadlistener()
 };
+
+let inputbutton = document.getElementById("button");
+inputbutton.addEventListener('click', settheinterval, false);
+let inputvalue;
+let info = document.getElementById("info");
+let interval = 500;
 let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
+
+
+function settheinterval() {
+
+    inputvalue = document.getElementById("input").value;
+    interval = inputvalue;
+    info.innerHTML = "interval is = " + inputvalue + " ms";
+
+}
+
 
 function gamepadlistener() {
     window.addEventListener("gamepadconnected", function(e) {
@@ -20,41 +36,44 @@ function gamepadlistener() {
         console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
             gp.index, gp.id,
             gp.buttons.length, gp.axes.length);
-            let buttons,axes,buttonsnumber;
+        let buttons, axes, buttonsnumber;
 
-        setInterval(gamepadmapping, 250);
+        setInterval(gamepadmapping, interval);
 
         function gamepadmapping() {
-          console.log("boutons: ", buttons);
-            console.log("lel", gp);
+            //  console.log("boutons: ", buttons);
+            //console.log("lel", gp);
             buttons = gp.buttons;
             axes = gp.axes;
             buttonsnumber = buttons.length;
-            for (var i = 0; i < statusli.length; i++) {
+            for (var i = 0; i < buttons.length; i++) {
                 statusli[i].innerHTML = buttons[i].pressed;
             }
-            console.log(axes);
-            console.log("carré: ", buttons[0].pressed);
-            console.log("croix: ", buttons[1].pressed);
-            console.log("rond: ", buttons[2].pressed);
-            console.log("triangle: ", buttons[3].pressed);
-            console.log("L1: ", buttons[4].pressed);
-            console.log("R1: ", buttons[5].pressed);
-            console.log("L2: ", buttons[6].pressed);
-            console.log("R2: ", buttons[7].pressed);
-            console.log("share: ", buttons[8].pressed);
-            console.log("option: ", buttons[9].pressed);
-            console.log("L3: ", buttons[10].pressed);
-            console.log("R3: ", buttons[11].pressed);
-            console.log("PS boutton: ", buttons[12].pressed);
-            console.log("pad tactile: ", buttons[13].pressed);
-            console.log("nc: ", buttons[14].pressed);
-            console.log("nc: ", buttons[15].pressed);
-            console.log("nc: ", buttons[16].pressed);
-            console.log("nc: ", buttons[17].pressed);
-            console.log("nc: ", axes[0], "nc: ", axes[1]);
-            console.log("nc: ", axes[2], "nc: ", axes[5]);
-            console.log("nc: ", axes[4], "nc: ", axes[3]);
+            for (var i = 0; i < 8; i++) {
+                statusli[i + 18].innerHTML = axes[i];
+            }
+            /*    console.log(axes);
+                console.log("carré: ", buttons[0].pressed);
+                console.log("croix: ", buttons[1].pressed);
+                console.log("rond: ", buttons[2].pressed);
+                console.log("triangle: ", buttons[3].pressed);
+                console.log("L1: ", buttons[4].pressed);
+                console.log("R1: ", buttons[5].pressed);
+                console.log("L2: ", buttons[6].pressed);
+                console.log("R2: ", buttons[7].pressed);
+                console.log("share: ", buttons[8].pressed);
+                console.log("option: ", buttons[9].pressed);
+                console.log("L3: ", buttons[10].pressed);
+                console.log("R3: ", buttons[11].pressed);
+                console.log("PS boutton: ", buttons[12].pressed);
+                console.log("pad tactile: ", buttons[13].pressed);
+                console.log("nc: ", buttons[14].pressed);
+                console.log("nc: ", buttons[15].pressed);
+                console.log("nc: ", buttons[16].pressed);
+                console.log("nc: ", buttons[17].pressed);
+                console.log("nc: ", axes[0], "nc: ", axes[1]);
+                console.log("nc: ", axes[2], "nc: ", axes[5]);
+                console.log("nc: ", axes[4], "nc: ", axes[3]);*/
         }
     });
 
@@ -90,8 +109,8 @@ function keymap() {
                 console.log("arrowUp: ", Xaxis, "velocity", velocity);
             }
             if (event.key == 'ArrowDown') {
-                return cube.style.top = Xaxis++ + velocity++ + "px";
                 console.log("arrowDown: ", Xaxis, "velocity", velocity);
+                return cube.style.top = Xaxis++ + velocity++ + "px";
 
             }
             if (event.key == 'ArrowLeft') {
