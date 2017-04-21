@@ -22,34 +22,31 @@ PwmOut pb5(PB_5);
 /********* INTERUPTOR ************/
 
 InterruptIn pa7(PA_7); // button
-
 using namespace std;
 using std::string;
-int yraportcyclique, xraportcyclique;
-float xroll,ypitch,ythrottle,xv,yv,by,xpercent,ypercent,yraportcycliqueflotant,cycle,raport,multiplicator;
-bool b;
-short int percent = 100;
-bool waiting = 0;
+
+unsigned int yraportcyclique, xraportcyclique;
+float xroll, ypitch, xyaw, ythrottle, xrollv, ypitchv, xyawv, ythrottlev, xrollpercent, ypitchpercent, xyawpercent, ythrottlepercent, ypitchrcf, xrollrcf, ythrottlercf, xyawrcf, cycle, raport, multiplicator;
+
+unsigned short percent = 100;
+bool waiting, b;
 
 
-
-
-int waitvalue = 1;
 void indicatorandwaitingvalue()
 {
-    if (ypercent > 33) {
+    if (ythrottlepercent > 33) {
         myled1 = 1;
 
     } else {
         myled1 = 0;
     }
-    if (ypercent > 49) {
+    if (ythrottlepercent > 49) {
         myled2 = 1;
 
     } else {
         myled2 = 0;
     }
-    if (ypercent > 95) {
+    if (ythrottlepercent > 95) {
         myled3 = 1;
 
     } else {
@@ -69,23 +66,32 @@ void indicatorandwaitingvalue()
         wait(0);
     }
 
-
 }
 
-void pwmtest(float ypitch,float xroll,float ythrottle)
+
+void pwmtest(double ypitch,double xroll,double ythrottle)
 {
-    yraportcycliqueflotant = (ypitch/100)*2;
+    ypitchrcf = (ypitch/100)*2;
+    xrollrcf = (xroll/100)*2;
+    ythrottlercf = (ythrottle/100)*2;
     raport = 0.05f;
     multiplicator = cycle/20;
-    xraportcyclique = x;
 
-    cout << "y raport cyclique flotant: " << yraportcycliqueflotant << " x raport cyclique: " << xraportcyclique << " period: " << cycle << " multiplicator: " << multiplicator << " calcule (raport + yraportcycliqueflotant)/multiplicator " << (raport + yraportcycliqueflotant)/multiplicator <<endl;
+
+    std::cout << " y pitch raport cyclique flotant (RCF): " << ypitchrcf << " x roll raport cyclique flotant (RCF): " << xrollrcf << " y throttle raport cyclique flotant(RCF): " << ythrottle << " period: " << cycle << " multiplicator: " << multiplicator << " calcule (raport + ythrottlercf)/multiplicator " << (raport + ythrottlercf)/multiplicator << endl;
     pc6.period_ms(cycle);
     pb15.period_ms(20);
 
-    pc6.write((raport + yraportcycliqueflotant)/multiplicator);
-    pb15.write(xraportcyclique + 0.00f);
-    //  pc6.write(xraportcyclique);
+    // flight mode
+    //  pb15.write((raport + ((activated/100)*2))/multiplicator);
+
+    //directional and power
+    pb13.write((raport + ypitchrcf)/multiplicator); //for test only i will have to change the ypichrcf by the "yaw" value which is comming soon
+    pa15.write((raport + ypitchrcf)/multiplicator);
+    pc7.write((raport + xrollrcf)/multiplicator);
+    pb5.write((raport + ythrottlercf)/multiplicator);
+
+
     return;
 };
 

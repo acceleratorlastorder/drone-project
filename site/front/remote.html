@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Remote</title>
-    <link rel="stylesheet" href="remote.css">
+    <link rel="stylesheet" href="remote.css" type="text/css">
 </head>
 
 <body>
@@ -78,17 +78,6 @@
         </section>
     </main>
     <script src="remote.js" charset="utf-8"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io.connect('http://localhost:8080');
-        socket.on('message', function(message) {
-            alert('Le serveur a un message pour vous : ' + message);
-        })
-        $('#poke').click(function () {
-            socket.emit('message', 'Salut serveur, ça va ?');
-        })
-    </script>
 </body>
 
 </html>

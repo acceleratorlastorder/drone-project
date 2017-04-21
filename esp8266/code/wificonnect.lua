@@ -19,5 +19,5 @@ print ("status: "..wifi.sta.status())
 print(wifi.sta.getip())
 mac_adress = wifi.sta.getmac()
 
-print ("mac adress : " .. mac_adress .. "wifi mode: " .. wifi.getphymode())
+print ("mac adress : " .. mac_adress .. " wifi mode: " .. wifi.getphymode())
 wifi.getphymode()

@@ -60,7 +60,6 @@ void errorcode(int green, int blue, int red)
     };
     return;
 };
-
 void valueofbuttonincrement()
 {
     printf("starting resetled() \n");
