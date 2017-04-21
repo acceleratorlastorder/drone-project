@@ -3,7 +3,7 @@ sv = net.createServer(net.TCP, 50)
 local uartmanager = require ("uartmanager")
 function receiver(sck, data)
   uartmanager.sendData(data)
-  print("data received: ", data , " sck: ", sck)
+ -- print("data received: ", data , " sck: ", sck)
   sck:close()
 end
 
