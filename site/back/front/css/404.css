@@ -1,0 +1,16 @@
+body {}
+
+main {
+    background-color: blue;
+    margin: 0 auto;
+}
+
+img {
+    width: 50%;
+    margin: auto;
+}
+
+h1 {
+    margin-top: 5%;
+    text-align: center;
+}
