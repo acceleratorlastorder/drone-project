@@ -10,13 +10,13 @@ function start() {
 
 let inputbutton = document.getElementById("button");
 inputbutton.addEventListener('click', settheinterval, false);
-let inputvalue,status;
+let inputvalue, status;
 let info = document.getElementById("info");
 let interval = 500;
 let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
 
-
+var roll, pitch, yaw, throttle;
 
 function settheinterval() {
 
@@ -26,18 +26,13 @@ function settheinterval() {
 
 }
 
-function createJSON(buttons, axes) {
+function createJSON() {
     status = JSON.stringify({
-      buttons,axes
+        roll,
+        pitch,
+        yaw,
+        throttle
     });
-
-
-/*
-    status = JSON.stringify({
-        buttonstatus: [buttons],
-        axestatus: axes
-    });
-*/
     console.log("status: ", status);
     return status;
 };
@@ -55,8 +50,12 @@ function gamepadlistener() {
         setInterval(gamepadmapping, interval);
 
         function gamepadmapping() {
-          createJSON(buttons, axes);
-          sendData(status);
+            throttle = ((gp.axes[3] + 1) + (gp.axes[4] + 1)) / 4;
+            roll = (gp.axes[2] + 1) / 2;
+            pitch = (gp.axes[1] + 1) / 2;
+            yaw = (gp.axes[0] + 1) / 2;
+            createJSON();
+            sendData(status);
             buttons = gp.buttons;
             axes = gp.axes;
             buttonsnumber = buttons.length;
