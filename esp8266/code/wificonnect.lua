@@ -10,14 +10,12 @@ wifi.sta.eventMonReg(wifi.STA_CONNECTING, function(previous_state)
         print("STATION_CONNECTING")
     end
 end)
-
 print ("starting to connect with the login/password given previously")
-wifi.sta.connect()
-tmr.delay(1000000)   -- wait 1,000,000 us = 1 second
+wifi.sta.connect()   -- wait 1,000,000 us = 1 second
 print ("trying to connect")
 print ("status: "..wifi.sta.status())
-print(wifi.sta.getip())
+myip = wifi.sta.getip()
 mac_adress = wifi.sta.getmac()
-
+print ("my ip", myip)
 print ("mac adress : " .. mac_adress .. " wifi mode: " .. wifi.getphymode())
 wifi.getphymode()
