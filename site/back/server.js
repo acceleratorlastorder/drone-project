@@ -7,8 +7,10 @@ const app = express();
 const server = http.createServer(app);
 app.use(express.static('front'));
 app.use(function(req, res, next) {
-    console.log("visitor couldn't find the page with that path ", req.originalUrl, " IP of the visitor: ", req.ip,);
-    res.sendFile('front/404.html', { root: __dirname });
+    console.log("visitor couldn't find the page with that path ", req.originalUrl, " IP of the visitor: ", req.ip);
+    res.sendFile('front/404.html', {
+        root: __dirname
+    });
 });
 
 
@@ -18,28 +20,36 @@ app.use(function(req, res, next) {
 const wss = new WebSocket.Server({
     server
 });
+var user = [];
 wss.on('connection', function connection(ws) {
     const location = url.parse(ws.upgradeReq.url, true);
     connectedUser++;
     console.log("something is connected ws :");
+    var id = ws.upgradeReq['headers']['user-agent'];
+    if (id == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
+        console.log("Connection from: ", id);
+    }
+    if (id == "NodeMCU") {
+        console.log("Connection from: ", id);
+    }
+
+    ws.send('hello we have at this moment ' + connectedUser + ' visitor');
     // You might use location.query.access_token to authenticate or share sessions
     ws.on('message', function incoming(message) {
-        console.log('received: %s', message, "from: ", ws.upgradeReq['headers']);
+        console.log('received: ', message); //  ws.upgradeReq['headers']['user-agent']
+        var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
+        if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
+            console.log("got message from: ", id);
+        }
+        if (ws.upgradeReq['headers']['id'] == "Drone") {
+            console.log("got message from: ", id);
+        }
     });
-    ws.send('hello we have at this moment ' + connectedUser + ' visitor');
 
     ws.on('close', function() {
-        console.log('connection with the client closed');
+        var id = w.upgradeReq.headers['sec-websocket-key'];
+        console.log('connection with the client ', id, ' closed');
         connectedUser--;
-    });
-    ws.on('open', function open() {
-        const array = new Float32Array(5);
-
-        for (var i = 0; i < array.length; ++i) {
-            array[i] = i / 2;
-        }
-
-        ws.send(array);
     });
 });
 /*****************************************************WEB SOCKET PART END*****************************************************/
