@@ -1,13 +1,14 @@
 body {}
 
 main {
-    background-color: blue;
     margin: 0 auto;
 }
 
 img {
-    width: 50%;
-    margin: auto;
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
