@@ -24,7 +24,7 @@ var user = [];
 wss.on('connection', function connection(ws) {
     const location = url.parse(ws.upgradeReq.url, true);
     connectedUser++;
-    console.log("something is connected ws :");
+    console.log("something is connected ws :", ws);
     var id = ws.upgradeReq['headers']['user-agent'];
     if (id == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
         console.log("Connection from: ", id);
