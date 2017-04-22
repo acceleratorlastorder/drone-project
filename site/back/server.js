@@ -6,11 +6,18 @@ const WebSocket = require('ws');
 const app = express();
 const server = http.createServer(app);
 app.use(express.static('front'));
-app.use(function(req, res, next) {
-    res.setHeader('Content-Type', 'text/plain');
+app.use('/admin', function(req, res, next) { // GET 'http://www.example.com/admin/new'
+    console.log(req.originalUrl); // '/admin/new'
+    console.log(req.baseUrl); // '/admin'
+    console.log(req.path); // '/new'
 
-    res.status(404).send("Page introuvable!")
 });
+app.use(function(req, res, next) {
+    console.log("visitor on 404 page: ", req.ip);
+    res.sendFile('front/404.html', { root: __dirname });
+});
+
+
 
 /*****************************************************WEB SOCKET PART START*****************************************************/
 
