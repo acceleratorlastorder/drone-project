@@ -6,14 +6,8 @@ const WebSocket = require('ws');
 const app = express();
 const server = http.createServer(app);
 app.use(express.static('front'));
-app.use('/admin', function(req, res, next) { // GET 'http://www.example.com/admin/new'
-    console.log(req.originalUrl); // '/admin/new'
-    console.log(req.baseUrl); // '/admin'
-    console.log(req.path); // '/new'
-
-});
 app.use(function(req, res, next) {
-    console.log("visitor on 404 page: ", req.ip);
+    console.log("visitor couldn't find the page with that path ", req.originalUrl, " IP of the visitor: ", req.ip,);
     res.sendFile('front/404.html', { root: __dirname });
 });
 
