@@ -17,6 +17,7 @@ let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l
 let statusli = document.querySelectorAll(".status");
 let limessage = document.getElementById("limessage");
 var roll, pitch, yaw, throttle;
+let buffer = [];
 
 function settheinterval() {
     window.clearInterval(gamepadTimeout);
@@ -26,12 +27,12 @@ function settheinterval() {
 }
 
 function createJSON() {
-    status = JSON.stringify({
+    status = JSON.stringify([
         roll,
         pitch,
         yaw,
-        throttle
-    });
+        throttle,
+    ]);
     console.log("status: ", status);
     return status;
 };
@@ -62,23 +63,49 @@ function gamepadlistener() {
             yaw = (gp.axes[0] + 1) / 2;
             shorterFloat();
             createJSON();
-            sendData(status);
-            buttons = gp.buttons;
-            axes = gp.axes;
-            buttonsnumber = buttons.length;
-            for (var i = 0; i < buttons.length; i++) {
-                statusli[i].innerHTML = buttons[i].pressed;
+            buffer.push(status);
+
+
+
+            if (isStatusHaschanged()) {
+                sendData(status);
+            } else {
+
+                buttons = gp.buttons;
+                axes = gp.axes;
+                buttonsnumber = buttons.length;
+                for (var i = 0; i < buttons.length; i++) {
+                    statusli[i].innerHTML = buttons[i].pressed;
+                }
+                for (var i = 0; i < 8; i++) {
+                    statusli[i + 18].innerHTML = axes[i];
+                }
             }
-            for (var i = 0; i < 8; i++) {
-                statusli[i + 18].innerHTML = axes[i];
+            if (buffer[1] == undefined) {
+                console.log("nope");
+            } else {
+                buffer.pop();
             }
         }
     })
 }
+
+function isStatusHaschanged() {
+    if (buffer[1] == undefined) {
+        return false;
+    } else {
+        if (buffer[0] == buffer[1]) {
+            console.log("nochange");
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 // 6 chiffres après la virgule max
 function shorterFloat() {
-  let something = 1000000;
-  let somethingelse = 0.000015;
+    let something = 1000000;
+    let somethingelse = 0.000015;
     //i know it's not good but that's to only way to get a json that have always the same length :)
     roll += somethingelse;
     pitch += somethingelse;
@@ -90,7 +117,12 @@ function shorterFloat() {
     yaw = Math.round(yaw * something) / something;
     throttle = Math.round(throttle * something) / something;
 }
-var testultime = {"roll":0.501962,"pitch":0.501962,"yaw":0.494119,"throttle":0.000001}
+var testultime = {
+    "roll": 0.501962,
+    "pitch": 0.501962,
+    "yaw": 0.494119,
+    "throttle": 0.000001
+}
 
 
 var host = window.document.location.host.replace(/:.*/, '');
@@ -98,7 +130,7 @@ console.log("host: ", host, "full address is then ", 'ws://' + host + ':8080');
 var ws = new WebSocket('ws://' + host + ':8080');
 
 ws.onmessage = function(event) {
-    console.log("message received event: ", event);
+    console.log("message received event: ", event.data);
     limessage.innerHTML = event.data;
 };
 
