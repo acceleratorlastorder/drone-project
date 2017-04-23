@@ -37,8 +37,6 @@ function getInputValue() {
 //      document.getElementById('heapTotal').innerHTML = memuse.heapTotal;
 //    document.getElementById('heapUsed').innerHTML = memuse.heapUsed;
 
-
-
 let identity = {
 
 

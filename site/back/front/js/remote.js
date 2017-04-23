@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("DOM loaded launching functions");
     start();
-
 });
 
 function start() {
     gamepadlistener()
 };
 
+var gamepadTimeout;
 let inputbutton = document.getElementById("button");
 inputbutton.addEventListener('click', settheinterval, false);
 let inputvalue, status;
@@ -16,17 +16,13 @@ let interval = 500;
 let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
 let limessage = document.getElementById("limessage");
-
-
-
 var roll, pitch, yaw, throttle;
 
 function settheinterval() {
-
+    window.clearInterval(gamepadTimeout);
     inputvalue = document.getElementById("input").value;
     interval = inputvalue;
     info.innerHTML = "interval is = " + inputvalue + " ms";
-
 }
 
 function createJSON() {
@@ -40,8 +36,11 @@ function createJSON() {
     return status;
 };
 
-
 function gamepadlistener() {
+    window.addEventListener("gamepaddisconnected", function(e) {
+        console.log("Contrôleur n°%d déconnecté : %s",
+            e.gamepad.index, e.gamepad.id);
+    });
     window.addEventListener("gamepadconnected", function(e) {
         var gp = navigator.getGamepads()[0];
         console.log("gamepads: ", gp);
@@ -50,13 +49,18 @@ function gamepadlistener() {
             gp.buttons.length, gp.axes.length);
         let buttons, axes, buttonsnumber;
 
-        setInterval(gamepadmapping, interval);
+        gamepadTimeout = window.setInterval(gamepadmapping, interval);
+
+
+        //      setInterval(gamepadmapping, interval);
 
         function gamepadmapping() {
+
             throttle = ((gp.axes[3] + 1) + (gp.axes[4] + 1)) / 4;
             roll = (gp.axes[2] + 1) / 2;
             pitch = (gp.axes[1] + 1) / 2;
             yaw = (gp.axes[0] + 1) / 2;
+            shorterFloat();
             createJSON();
             sendData(status);
             buttons = gp.buttons;
@@ -71,7 +75,22 @@ function gamepadlistener() {
         }
     })
 }
+// 6 chiffres après la virgule max
+function shorterFloat() {
+  let something = 1000000;
+  let somethingelse = 0.000015;
+    //i know it's not good but that's to only way to get a json that have always the same length :)
+    roll += somethingelse;
+    pitch += somethingelse;
+    yaw += somethingelse;
+    throttle += somethingelse;
 
+    roll = Math.round(roll * something) / something;
+    pitch = Math.round(pitch * something) / something;
+    yaw = Math.round(yaw * something) / something;
+    throttle = Math.round(throttle * something) / something;
+}
+var testultime = {"roll":0.501962,"pitch":0.501962,"yaw":0.494119,"throttle":0.000001}
 
 
 var host = window.document.location.host.replace(/:.*/, '');
@@ -88,10 +107,13 @@ function sendIdentityJSON(identityJSONtoparse) {
 }
 
 function sendData(dataToSend) {
-    console.log("dataToSend: ", dataToSend);
-
+    console.log("dataToSend: ", dataToSend, "length of dataToSend: ", dataToSend.length);
     ws.send(dataToSend);
     console.log("sent");
+}
+
+function sendtesultime() {
+    ws.send(JSON.stringify(testultime));
 }
 
 function getInputValue() {
@@ -99,19 +121,7 @@ function getInputValue() {
     return inputValue;
 }
 
-
-//      document.getElementById('heapTotal').innerHTML = memuse.heapTotal;
-//    document.getElementById('heapUsed').innerHTML = memuse.heapUsed;
-
-
-
-let identity = {
-
-
-}
-
-
-
+let identity = {}
 
 /*    console.log(axes);
 console.log("carré: ", buttons[0].pressed);

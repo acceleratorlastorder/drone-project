@@ -1,10 +1,10 @@
 let date = new Date();
 let theDate = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ": ";
+let theDateWithMicroseconds = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + ":";
 const express = require('express');
 const http = require('http');
 const url = require('url');
 const WebSocket = require('ws');
-
 const app = express();
 const server = http.createServer(app);
 app.use(express.static('front'));
@@ -14,11 +14,7 @@ app.use(function(req, res, next) {
         root: __dirname
     });
 });
-
-
-
 /*****************************************************WEB SOCKET PART START*****************************************************/
-
 const wss = new WebSocket.Server({
     server
 });
@@ -38,7 +34,6 @@ wss.on('connection', function connection(ws) {
         user.push(clientsocket);
         clientindex = user.indexOf(clientsocket);
         console.log(theDate, " clientindex: ", clientindex);
-
     }
     if (id == "NodeMCU") {
         console.log(theDate, " Connection from: ", id);
@@ -49,12 +44,13 @@ wss.on('connection', function connection(ws) {
         droneindex = user.indexOf(dronesocket);
         console.log(theDate, " droneindex: ", droneindex);
     }
-
     connectedUser = user.length;
     ws.send('hello we have at this moment ' + connectedUser + ' visitor');
     // You might use location.query.access_token to authenticate or share sessions
     ws.on('message', function incoming(message) {
-        console.log(theDate, ' received: ', message); //  ws.upgradeReq['headers']['user-agent']
+        date = new Date();
+        theDateWithMicroseconds = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + ":";
+        console.log(theDateWithMicroseconds, ' received: ', message); //  ws.upgradeReq['headers']['user-agent']
         var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
         if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
             console.log(theDate, " got message from: ", id);
@@ -63,21 +59,16 @@ wss.on('connection', function connection(ws) {
                 ws.send(theDate + " drone not connected yet")
             } else {
                 console.log('drone index: ', droneindex);
-                user[droneindex].drone.send("hello i'm the client here's my message: " + message)
+                user[droneindex].drone.send(message);
             }
         }
         if (ws.upgradeReq['headers']['id'] == "Drone") {
             console.log(theDate, " got message from: ", id);
             //    ws.send("envoyé depuis node mcu" + message)
-            if (clientindex == -1 || clientindex == undefined) {
-                console.log(theDate, " no client connected yet");
-            } else {
-                user[clientindex].client.send("hello from node mcu here the message " + message)
-            }
+
+            sendTo(0, message)
         }
-
     });
-
     ws.on('close', function() {
         var id = ws.upgradeReq.headers['sec-websocket-key'];
         console.log('connection with the client ', id, ' closed');
@@ -86,16 +77,62 @@ wss.on('connection', function connection(ws) {
             console.log(theDate, " client disconected !");
         }
         if (id == "NodeMCU") {
+            sendTo(0, 'drone disconnected')
             console.log(theDate, " Drone disconnected!");
             user.splice(droneindex, 1);
         }
+
     });
 });
+
+
+
+function isJson(item) {
+    item = typeof item !== "string" ?
+        JSON.stringify(item) :
+        item;
+
+    try {
+        item = JSON.parse(item);
+    } catch (e) {
+        return false;
+    }
+
+    if (typeof item === "object" && item !== null) {
+        return true;
+    }
+
+    return false;
+}
+
+
+
+function sendTo(who, message) {
+    // who  1 = drone, 0 = client
+
+    if (who == 0) {
+        if (clientindex == -1 || clientindex == undefined) {
+            console.log(theDate, " no client connected yet");
+        } else {
+            user[clientindex].client.send(message)
+        }
+    } else {
+        if (droneindex == -1 || droneindex == undefined) {
+            console.log(theDate, " no drone connected yet");
+            ws.send(theDate + " drone not connected yet")
+        } else {
+            console.log('drone index: ', droneindex);
+            user[droneindex].drone.send(message)
+        }
+    }
+
+
+
+}
+
+
 /*****************************************************WEB SOCKET PART END*****************************************************/
 server.listen(8080, function listening() {
     console.log(theDate, ' Listening on %d', server.address().port);
 });
 console.log(theDate, " server ", server.address());
-
-
-let espmessage, clientmessage;

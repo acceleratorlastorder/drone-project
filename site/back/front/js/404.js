@@ -20,12 +20,4 @@ function start() {
     main.innerHTML = "<img src='pictures/" + result + "' alt=\"can't get the picture but anyway it was just a peugeot 404 so you understand it's a 404 page :)\"/>";
 
 }
-ws: config({
-            headers = {
-                ['User-Agent'] = 'NodeMCU'
-            },
-            {
-                ['yolo'] = 'salut'
-            }})
-
         // TODO: create a function that can take the length of the array and make a random on it ex if length = 2 as the max value of math random is 1 then x = 1/length so 1/2 = 0.5, then if (random > 0 &&  random < x)  still thinking about higher number than 2 XD
