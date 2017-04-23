@@ -117,12 +117,7 @@ function shorterFloat() {
     yaw = Math.round(yaw * something) / something;
     throttle = Math.round(throttle * something) / something;
 }
-var testultime = {
-    "roll": 0.501962,
-    "pitch": 0.501962,
-    "yaw": 0.494119,
-    "throttle": 0.000001
-}
+var testultime = [0.51374, 0.498054, 0.501976, 0.000015];
 
 
 var host = window.document.location.host.replace(/:.*/, '');
@@ -145,7 +140,8 @@ function sendData(dataToSend) {
 }
 
 function sendtesultime() {
-    ws.send(JSON.stringify(testultime));
+
+    sendData(JSON.stringify(testultime));
 }
 
 function getInputValue() {

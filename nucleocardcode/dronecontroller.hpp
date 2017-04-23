@@ -28,48 +28,34 @@ using std::string;
 unsigned int yraportcyclique, xraportcyclique;
 float xroll, ypitch, xyaw, ythrottle, xrollv, ypitchv, xyawv, ythrottlev, xrollpercent, ypitchpercent, xyawpercent, ythrottlepercent, ypitchrcf, xrollrcf, ythrottlercf, xyawrcf, cycle, raport, multiplicator;
 
-unsigned short percent = 100;
+unsigned short int percent = 100;
 bool waiting, b;
 
 
-void indicatorandwaitingvalue()
+void indicatorvalue()
 {
-    if (ythrottlepercent > 33) {
+    if (roll > 0.33) {
         myled1 = 1;
 
     } else {
         myled1 = 0;
     }
-    if (ythrottlepercent > 49) {
+    if (roll > 0.49) {
         myled2 = 1;
 
     } else {
         myled2 = 0;
     }
-    if (ythrottlepercent > 95) {
+    if (roll > 0.95) {
         myled3 = 1;
 
     } else {
         myled3 = 0;
     }
-    if (b) {
-        waiting = 1;
-    }
-    if(button) {
-        waiting = 0;
-    }
-
-    if (waiting) {
-        wait(0.20);
-    }
-    if (!waiting) {
-        wait(0);
-    }
-
 }
 
 
-void pwmtest(double ypitch,double xroll,double ythrottle)
+void pwmManager(float ypitch,float xroll,float ythrottle)
 {
     ypitchrcf = (ypitch/100)*2;
     xrollrcf = (xroll/100)*2;
