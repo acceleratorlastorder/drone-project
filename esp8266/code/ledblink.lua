@@ -2,7 +2,7 @@ local M = {}
 
 function blinkled (ledtoblink, howmanytime)
   print("so you want some blinking led ? ^^")
-  print("well let's start the LED " .. ledtoblink .." and " .. howmanytime .. " time(s) :)")
+  print("well let's start the LED number " .. ledtoblink .." and it will blink " .. howmanytime .. " time(s) :)")
   for i = 1, howmanytime, 1 do
     gpio.write(ledtoblink, gpio.HIGH)
     tmr.delay(500000)   -- wait 1,000,000 us = 1 second

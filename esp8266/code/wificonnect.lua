@@ -14,6 +14,14 @@ print ("starting to connect with the login/password given previously")
 wifi.sta.connect()   -- wait 1,000,000 us = 1 second
 print ("trying to connect")
 print ("status: "..wifi.sta.status())
+wifi.sta.eventMonReg(wifi.STA_CONNECTING, function(previous_State)
+    if(previous_State==wifi.STA_GOTIP) then
+        print("Station lost connection with access point\n\tAttempting to reconnect...")
+    else
+        print("STATION_CONNECTING")
+    end
+end)
+wifi.sta.getrssi()
 myip = wifi.sta.getip()
 mac_adress = wifi.sta.getmac()
 print ("my ip", myip)
