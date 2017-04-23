@@ -15,6 +15,9 @@ let info = document.getElementById("info");
 let interval = 500;
 let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
+let limessage = document.getElementById("limessage");
+
+
 
 var roll, pitch, yaw, throttle;
 
@@ -77,6 +80,7 @@ var ws = new WebSocket('ws://' + host + ':8080');
 
 ws.onmessage = function(event) {
     console.log("message received event: ", event);
+    limessage.innerHTML = event.data;
 };
 
 function sendIdentityJSON(identityJSONtoparse) {

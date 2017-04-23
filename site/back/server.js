@@ -48,11 +48,6 @@ wss.on('connection', function connection(ws) {
         user.push(dronesocket);
         droneindex = user.indexOf(dronesocket);
         console.log(theDate, " droneindex: ", droneindex);
-        if (clientindex == -1) {
-            console.log(theDate, " no clientr connected yet");
-        } else {
-            user[clientindex].send
-        }
     }
 
     connectedUser = user.length;
@@ -63,20 +58,21 @@ wss.on('connection', function connection(ws) {
         var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
         if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
             console.log(theDate, " got message from: ", id);
-            if (droneindex == -1) {
+            if (droneindex == -1 || droneindex == undefined) {
                 console.log(theDate, " no drone connected yet");
-                ws.send(theDate +" drone not connected yet")
+                ws.send(theDate + " drone not connected yet")
             } else {
-                user[droneindex].send("hello i'm the client here's my message: ", message)
+                console.log('drone index: ', droneindex);
+                user[droneindex].drone.send("hello i'm the client here's my message: " + message)
             }
         }
         if (ws.upgradeReq['headers']['id'] == "Drone") {
             console.log(theDate, " got message from: ", id);
             //    ws.send("envoyé depuis node mcu" + message)
-            if (clientindex == -1) {
+            if (clientindex == -1 || clientindex == undefined) {
                 console.log(theDate, " no client connected yet");
             } else {
-                user[clientindex].send("hello from node mcu here the message ", message)
+                user[clientindex].client.send("hello from node mcu here the message " + message)
             }
         }
 
