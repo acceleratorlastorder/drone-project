@@ -1,4 +1,3 @@
-function websocketconnect()
     print('into the function websocket')
     iswebsocketactivated = 1
     ws = websocket.createClient()
@@ -14,16 +13,9 @@ function websocketconnect()
       print('connection closed', status)
       ws = nil -- required to lua gc the websocket client
     end)
-    ws:connect('ws://192.168.1.13:8080')    
-end
+    ws:connect('ws://192.168.1.13:8080')  
 
-websocketconnect()
-local yolo = {}
-
-  function closewebsocket()
-    ws:close()
-  end
-yolo.closewebsocket = closewebsocket
-return yolo
-
-  
+--local C = {}
+  --function iwannaclosewebsocket(lol) return print ('YOLO' .. lol) end
+  --close.iwannaclosewebsocket = iwannaclosewebsocket
+--return C

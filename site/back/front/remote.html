@@ -11,75 +11,88 @@
     <p>set the interval between each refresh of the gamepad status(low value may make the browser crash or being slow)<br>you have to reconnect the controller to see the effect on the interval timing</p>
     <input id="input" type="text" name="" value="">
     <button id="button" type="button" name="button">change the interval</button>
-  <!--  <p>send data to server ?<input type="checkbox" name="" value=""/></p> -->
+    <!--  <p>send data to server ?<input type="checkbox" name="" value=""/></p> -->
     <p id="info"></p>
     <main>
-        <section id="name">
-            <ul>
-                Button:
-                <li>Square</li>
-                <li>Cross</li>
-                <li>Circle</li>
-                <li>Triangle</li>
-                <li>L1</li>
-                <li>R1</li>
-                <li>L2</li>
-                <li>R2</li>
-                <li>Share</li>
-                <li>Option</li>
-                <li>L3</li>
-                <li>R3</li>
-                <li>PS button</li>
-                <li>Pad tactile</li>
-                <li>Dpad left</li>
-                <li>Dpad top</li>
-                <li>Dpad right</li>
-                <li>Dpad bottom</li>
-                <li>left joystick X</li>
-                <li>left joystick Y</li>
-                <li>Right joystick X</li>
-                <li>L2 joystick value</li>
-                <li>R2 joystick values</li>
-                <li>Right joystick Y</li>
-                <li>N/C</li>
-                <li>N/C</li>
+        <aside class="asideLeft">
+            <h1>Data from the controller:</h1>
+            <article class="dataFromController">
 
-            </ul>
-        </section>
-        <section id="status">
-            <ul>
-                status:
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-                <li class="status"></li>
-            </ul>
-        </section>
+                <section id="name">
+                    <ul>
+                        Button:
+                        <li>Square</li>
+                        <li>Cross</li>
+                        <li>Circle</li>
+                        <li>Triangle</li>
+                        <li>L1</li>
+                        <li>R1</li>
+                        <li>L2</li>
+                        <li>R2</li>
+                        <li>Share</li>
+                        <li>Option</li>
+                        <li>L3</li>
+                        <li>R3</li>
+                        <li>PS button</li>
+                        <li>Pad tactile</li>
+                        <li>Dpad left</li>
+                        <li>Dpad top</li>
+                        <li>Dpad right</li>
+                        <li>Dpad bottom</li>
+                        <li>left joystick X</li>
+                        <li>left joystick Y</li>
+                        <li>Right joystick X</li>
+                        <li>L2 joystick value</li>
+                        <li>R2 joystick values</li>
+                        <li>Right joystick Y</li>
+                        <li>N/C</li>
+                        <li>N/C</li>
+                    </ul>
+                </section>
+                <section id="status">
+                    <ul>
+                        status:
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                        <li class="status"></li>
+                    </ul>
+                </section>
+            </article>
+        </aside>
+        <aside class="asideRight">
+          <h1>Data from the server:</h1>
+            <article class="dataFromServer">
+                <section>
+
+                </section>
+            </article>
+        </aside>
     </main>
-   <script src="js/remote.js" charset="utf-8"></script>
-<!--     <script src="application.js" charset="utf-8"></script>-->
+    <script src="js/remote.js" charset="utf-8"></script>
+    <!--     <script src="application.js" charset="utf-8"></script>-->
 </body>
 
 </html>

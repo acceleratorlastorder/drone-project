@@ -1,4 +1,25 @@
-main{
-background-color: teal;
-display: flex;
+main {
+    display: flex;
+}
+
+.asideRight H1, .asideLeft H1 {
+    text-align: center;
+}
+
+.asideLeft, .asideRight {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+.dataFromController {
+    display: flex;
+}
+
+.asideLeft {
+    background-color: teal;
+}
+
+.asideRight {
+    background-color: red;
 }
