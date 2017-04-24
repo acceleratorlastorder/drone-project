@@ -1,0 +1,7 @@
+body {
+    margin: 0;
+    background-image: url(pictures/backgroundindex.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100%;
+}

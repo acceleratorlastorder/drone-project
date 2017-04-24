@@ -6,5 +6,5 @@ print ("init the esp8266")
 
 print('collectgarbage: ',collectgarbage())
 
-loadfile ("wificonnect.lc")
-loadfile ("websocket.lua")
+dofile ("wificonnect.lua")
+dofile ("websocket.lua")

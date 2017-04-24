@@ -65,12 +65,9 @@ function gamepadlistener() {
             createJSON();
             buffer.push(status);
 
-
-
             if (isStatusHaschanged()) {
                 sendData(status);
             } else {
-
                 buttons = gp.buttons;
                 axes = gp.axes;
                 buttonsnumber = buttons.length;
