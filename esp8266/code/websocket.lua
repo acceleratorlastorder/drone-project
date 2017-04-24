@@ -18,7 +18,7 @@ local function startwebsocket()
     print('connection closed', status)
     ws = nil -- required to lua gc the websocket client
   end)
-  ws:connect('ws://192.168.1.13:8080')  
+  ws:connect('ws://192.168.43.247:8080')  
 end
 
 startwebsocket()
