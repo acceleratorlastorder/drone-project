@@ -1,6 +1,5 @@
 local function startwifi()
   wifi.setmode(wifi.STATION)
-  wifi.setphymode(wifi.PHYMODE_B)
   local ssidconfig = require ("ssidconfig")
   wifi.sta.config(SSID,PASSWORD,false)
   -- register event callbacks for WiFi events
@@ -22,7 +21,6 @@ local function startwifi()
           print("STATION_CONNECTING")
       end
   end)
-  wifi.sta.getrssi()
   local myip = wifi.sta.getip()
   local mac_adress = wifi.sta.getmac()
   print ("my ip", myip)

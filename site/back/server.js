@@ -24,9 +24,9 @@ let connectedUser = 0;
 // drone = 777, client = 888
 wss.on('connection', function connection(ws) {
     const location = url.parse(ws.upgradeReq.url, true);
-    console.log(theDate, " something is connected ws :", ws.id);
+    console.log(theDate, " something is connected ws :", ws.upgradeReq['headers']['user-agent']);
     var id = ws.upgradeReq['headers']['user-agent'];
-    if (id == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
+    if (id !== "NodeMCU") {
         console.log(theDate, " Connection from: ", id);
         clientsocket = {
             client: ws
@@ -34,8 +34,7 @@ wss.on('connection', function connection(ws) {
         user.push(clientsocket);
         clientindex = user.indexOf(clientsocket);
         console.log(theDate, " clientindex: ", clientindex);
-    }
-    if (id == "NodeMCU") {
+    } else {
         console.log(theDate, " Connection from: ", id);
         dronesocket = {
             drone: ws
@@ -52,21 +51,15 @@ wss.on('connection', function connection(ws) {
         theDateWithMicroseconds = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + ":";
         console.log(theDateWithMicroseconds, ' received: ', message); //  ws.upgradeReq['headers']['user-agent']
         var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
-        if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
+        if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0") {
             console.log(theDate, " got message from: ", id);
-            if (droneindex == -1 || droneindex == undefined) {
-                console.log(theDate, " no drone connected yet");
-                ws.send(theDate + " drone not connected yet")
-            } else {
-                console.log('drone index: ', droneindex);
-                user[droneindex].drone.send(message);
-            }
+            sendTo(1, message);
         }
         if (ws.upgradeReq['headers']['id'] == "Drone") {
             console.log(theDate, " got message from: ", id);
             //    ws.send("envoyé depuis node mcu" + message)
 
-            sendTo(0, message)
+            sendTo(0, message);
         }
     });
     ws.on('close', function() {
@@ -109,7 +102,6 @@ function isJson(item) {
 
 function sendTo(who, message) {
     // who  1 = drone, 0 = client
-
     if (who == 0) {
         if (clientindex == -1 || clientindex == undefined) {
             console.log(theDate, " no client connected yet");
@@ -125,12 +117,7 @@ function sendTo(who, message) {
             user[droneindex].drone.send(message)
         }
     }
-
-
-
 }
-
-
 /*****************************************************WEB SOCKET PART END*****************************************************/
 server.listen(8080, function listening() {
     console.log(theDate, ' Listening on %d', server.address().port);

@@ -1,5 +1,5 @@
 local function startwebsocket()
-  local test = require 'uartmanager'
+  local test = require ('uartmanager')
   node.setcpufreq(node.CPU160MHZ)
   ws = websocket.createClient()
   ws:config({headers={['User-Agent']='NodeMCU',['Id']='Drone'}})
@@ -8,8 +8,8 @@ local function startwebsocket()
     ws:send('connection from the esp 8266 with the IP: ' .. wifi.sta.getip())
   end)
   ws:on("receive", function(_, msg, opcode)
-    ws:send("received")
-    
+    ws:send("ok i got it: ", opcode) 
+    print("received ",msg)   
     test.sendData (msg)
     --print(msg)-- msg, opcode is 1 for text message, 2 for binary
     msg=nil opcode=nil
@@ -19,13 +19,7 @@ local function startwebsocket()
     ws = nil -- required to lua gc the websocket client
     startwebsocket()
   end)
-  ws:connect('ws://192.168.1.13:8080')  
+  ws:connect('ws://192.168.1.106:8080')  
 end
 
 startwebsocket()
-
-
---local C = {}
-  --function closewebsocket(lol) return print ('YOLO' .. lol) end
-  --close.closewebsocket = closewebsocket
---return C

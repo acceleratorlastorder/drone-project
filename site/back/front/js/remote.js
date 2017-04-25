@@ -41,6 +41,7 @@ function gamepadlistener() {
     window.addEventListener("gamepaddisconnected", function(e) {
         console.log("Contrôleur n°%d déconnecté : %s",
             e.gamepad.index, e.gamepad.id);
+        window.clearInterval(gamepadTimeout);
     });
     window.addEventListener("gamepadconnected", function(e) {
         var gp = navigator.getGamepads()[0];
@@ -52,9 +53,6 @@ function gamepadlistener() {
 
         gamepadTimeout = window.setInterval(gamepadmapping, interval);
 
-
-        //      setInterval(gamepadmapping, interval);
-
         function gamepadmapping() {
 
             throttle = ((gp.axes[3] + 1) + (gp.axes[4] + 1)) / 4;
@@ -63,29 +61,38 @@ function gamepadlistener() {
             yaw = (gp.axes[0] + 1) / 2;
             shorterFloat();
             createJSON();
-            buffer.push(status);
-
-            if (isStatusHaschanged()) {
-                sendData(status);
-            } else {
-                buttons = gp.buttons;
-                axes = gp.axes;
-                buttonsnumber = buttons.length;
-                for (var i = 0; i < buttons.length; i++) {
-                    statusli[i].innerHTML = buttons[i].pressed;
-                }
-                for (var i = 0; i < 8; i++) {
-                    statusli[i + 18].innerHTML = axes[i];
-                }
+            makeJSONFixedLength();
+            //  buffer.push(status);
+            //          if (isStatusHaschanged()) {
+            sendData(status);
+            //        } else {
+            buttons = gp.buttons;
+            axes = gp.axes;
+            buttonsnumber = buttons.length;
+            for (var i = 0; i < buttons.length; i++) {
+                statusli[i].innerHTML = buttons[i].pressed;
             }
-            if (buffer[1] == undefined) {
-                console.log("nope");
-            } else {
-                buffer.pop();
+            for (var i = 0; i < 8; i++) {
+                statusli[i + 18].innerHTML = axes[i];
             }
+            //      }
+            /*    if (buffer[1] == undefined) {
+                    console.log("nope");
+                } else {
+                    buffer.pop();
+                }*/
         }
     })
 }
+
+function makeJSONFixedLength() {
+
+
+
+
+}
+
+
 
 function isStatusHaschanged() {
     if (buffer[1] == undefined) {
@@ -103,7 +110,7 @@ function isStatusHaschanged() {
 function shorterFloat() {
     let something = 1000000;
     let somethingelse = 0.000015;
-    //i know it's not good but that's to only way to get a json that have always the same length :)
+    //i know it's not good but that's to only way to get a json that have always the same length :) or not
     roll += somethingelse;
     pitch += somethingelse;
     yaw += somethingelse;
