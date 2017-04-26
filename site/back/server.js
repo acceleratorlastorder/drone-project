@@ -26,7 +26,8 @@ wss.on('connection', function connection(ws) {
     const location = url.parse(ws.upgradeReq.url, true);
     console.log(theDate, " something is connected ws :", ws.upgradeReq['headers']['user-agent']);
     var id = ws.upgradeReq['headers']['user-agent'];
-    if (id !== "NodeMCU") {
+    var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
+    if (id != "NodeMCU") {
         console.log(theDate, " Connection from: ", id);
         clientsocket = {
             client: ws
@@ -49,22 +50,17 @@ wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
         date = new Date();
         theDateWithMicroseconds = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + ":";
+        console.log(theDate, " got message from: ", id);
         console.log(theDateWithMicroseconds, ' received: ', message); //  ws.upgradeReq['headers']['user-agent']
-        var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
-        if (ws.upgradeReq['headers']['user-agent'] == "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0") {
-            console.log(theDate, " got message from: ", id);
+        if (id != "NodeMCU") {
             sendTo(1, message);
-        }
-        if (ws.upgradeReq['headers']['id'] == "Drone") {
-            console.log(theDate, " got message from: ", id);
-            //    ws.send("envoyé depuis node mcu" + message)
-
+        } else {
             sendTo(0, message);
         }
     });
     ws.on('close', function() {
-        var id = ws.upgradeReq.headers['sec-websocket-key'];
-        console.log('connection with the client ', id, ' closed');
+        socketkey = ws.upgradeReq.headers['sec-websocket-key'];
+        console.log('connection with the client ', socketkey, ' closed');
         if (id == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
             user.splice(clientindex, 1);
             console.log(theDate, " client disconected !");

@@ -1,5 +1,6 @@
 local function startwifi()
   wifi.setmode(wifi.STATION)
+  wifi.setphymode(wifi.PHYMODE_N)
   local ssidconfig = require ("ssidconfig")
   wifi.sta.config(SSID,PASSWORD,false)
   -- register event callbacks for WiFi events

@@ -19,7 +19,7 @@ local function startwebsocket()
     ws = nil -- required to lua gc the websocket client
     startwebsocket()
   end)
-  ws:connect('ws://192.168.1.106:8080')  
+  ws:connect('ws://192.168.1.13:8080')  
 end
 
 startwebsocket()

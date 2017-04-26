@@ -33,20 +33,20 @@ function createJSON() {
         yaw,
         throttle,
     ]);
-    console.log("status: ", status);
+    console.log("status: ", status, "and status.Length = ", );
     return status;
 };
 
 function gamepadlistener() {
     window.addEventListener("gamepaddisconnected", function(e) {
-        console.log("Contrôleur n°%d déconnecté : %s",
+    console.log("Contrôleur n°%d déconnecté : %s",
             e.gamepad.index, e.gamepad.id);
         window.clearInterval(gamepadTimeout);
     });
     window.addEventListener("gamepadconnected", function(e) {
         var gp = navigator.getGamepads()[0];
-        console.log("gamepads: ", gp);
-        console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+      //  console.log("gamepads: ", gp);
+     console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
             gp.index, gp.id,
             gp.buttons.length, gp.axes.length);
         let buttons, axes, buttonsnumber;
@@ -92,8 +92,6 @@ function makeJSONFixedLength() {
 
 }
 
-
-
 function isStatusHaschanged() {
     if (buffer[1] == undefined) {
         return false;
@@ -132,11 +130,11 @@ ws.onmessage = function(event) {
     console.log("message received event: ", event.data);
     limessage.innerHTML = event.data;
 };
-
+/*
 function sendIdentityJSON(identityJSONtoparse) {
     let id = JSON.parse(identityJSONtoparse);
 }
-
+*/
 function sendData(dataToSend) {
     console.log("dataToSend: ", dataToSend, "length of dataToSend: ", dataToSend.length);
     ws.send(dataToSend);
@@ -144,7 +142,6 @@ function sendData(dataToSend) {
 }
 
 function sendtesultime() {
-
     sendData(JSON.stringify(testultime));
 }
 
