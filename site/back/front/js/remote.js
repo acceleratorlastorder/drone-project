@@ -13,11 +13,11 @@ inputbutton.addEventListener('click', settheinterval, false);
 let inputvalue, status;
 let info = document.getElementById("info");
 let interval = 500;
-let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
+//let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
 let limessage = document.getElementById("limessage");
-var roll, pitch, yaw, throttle;
 let buffer = [];
+var roll, pitch, yaw, throttle;
 
 function settheinterval() {
     window.clearInterval(gamepadTimeout);
@@ -26,45 +26,38 @@ function settheinterval() {
     info.innerHTML = "interval is = " + inputvalue + " ms";
 }
 
-function createJSON() {
+function createJSON(roll, pitch, yaw, throttle) {
     status = JSON.stringify([
-        roll,
-        pitch,
-        yaw,
-        throttle,
+        roll.toFixed(6),
+        pitch.toFixed(6),
+        yaw.toFixed(6),
+        throttle.toFixed(6)
     ]);
-    console.log("status: ", status, "and status.Length = ", );
     return status;
 };
 
 function gamepadlistener() {
     window.addEventListener("gamepaddisconnected", function(e) {
-    console.log("Contrôleur n°%d déconnecté : %s",
-            e.gamepad.index, e.gamepad.id);
+        console.log("Contrôleur n°%d déconnecté : %s", e.gamepad.index, e.gamepad.id);
         window.clearInterval(gamepadTimeout);
     });
     window.addEventListener("gamepadconnected", function(e) {
         var gp = navigator.getGamepads()[0];
-      //  console.log("gamepads: ", gp);
-     console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-            gp.index, gp.id,
-            gp.buttons.length, gp.axes.length);
+        //  console.log("gamepads: ", gp);
+        console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.", gp.index, gp.id, gp.buttons.length, gp.axes.length);
         let buttons, axes, buttonsnumber;
-
         gamepadTimeout = window.setInterval(gamepadmapping, interval);
 
         function gamepadmapping() {
-
             throttle = ((gp.axes[3] + 1) + (gp.axes[4] + 1)) / 4;
             roll = (gp.axes[2] + 1) / 2;
             pitch = (gp.axes[1] + 1) / 2;
             yaw = (gp.axes[0] + 1) / 2;
-            shorterFloat();
-            createJSON();
-            makeJSONFixedLength();
+            //    shorterFloat();
+            //createJSON(roll, pitch, yaw, throttle);
             //  buffer.push(status);
             //          if (isStatusHaschanged()) {
-            sendData(status);
+            sendData(createJSON(roll, pitch, yaw, throttle));
             //        } else {
             buttons = gp.buttons;
             axes = gp.axes;
@@ -88,8 +81,6 @@ function gamepadlistener() {
 function makeJSONFixedLength() {
 
 
-
-
 }
 
 function isStatusHaschanged() {
@@ -107,7 +98,7 @@ function isStatusHaschanged() {
 // 6 chiffres après la virgule max
 function shorterFloat() {
     let something = 1000000;
-    let somethingelse = 0.000015;
+    let somethingelse = 0.000001;
     //i know it's not good but that's to only way to get a json that have always the same length :) or not
     roll += somethingelse;
     pitch += somethingelse;
@@ -118,8 +109,11 @@ function shorterFloat() {
     pitch = Math.round(pitch * something) / something;
     yaw = Math.round(yaw * something) / something;
     throttle = Math.round(throttle * something) / something;
+
+
+
 }
-var testultime = [0.51374, 0.498054, 0.501976, 0.000015];
+var testultime = [0.513746, 0.498054, 0.501976, 0.000000];
 
 
 var host = window.document.location.host.replace(/:.*/, '');
@@ -142,7 +136,16 @@ function sendData(dataToSend) {
 }
 
 function sendtesultime() {
-    sendData(JSON.stringify(testultime));
+    var test = JSON.stringify(testultime);
+
+
+
+    console.log("status ", test, "length ", test.length);
+    for (var i = 0; i < test.length; i++) {
+        test[i]
+    }
+
+    sendData(test);
 }
 
 function getInputValue() {

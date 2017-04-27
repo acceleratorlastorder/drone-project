@@ -1,9 +1,4 @@
 #include "mbed.h"
-DigitalOut myled1(LED1);
-DigitalOut myled2(LED2);
-DigitalOut myled3(LED3);
-DigitalIn  button(USER_BUTTON);
-
 bool errorstate = 0;
 int buttonincrement=0;
 

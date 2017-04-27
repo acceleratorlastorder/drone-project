@@ -51,69 +51,60 @@ wss.on('connection', function connection(ws) {
         date = new Date();
         theDateWithMicroseconds = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + ":";
         console.log(theDate, " got message from: ", id);
-        console.log(theDateWithMicroseconds, ' received: ', message); //  ws.upgradeReq['headers']['user-agent']
+        console.log(theDateWithMicroseconds, ' received: ', message);
         if (id != "NodeMCU") {
-            sendTo(1, message);
+            sendTo(1, message, clientindex, droneindex, ws);
         } else {
-            sendTo(0, message);
+            sendTo(0, message, clientindex, droneindex, ws);
         }
     });
     ws.on('close', function() {
         socketkey = ws.upgradeReq.headers['sec-websocket-key'];
         console.log('connection with the client ', socketkey, ' closed');
-        if (id == "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0") {
+        if (id != "NodeMCU") {
             user.splice(clientindex, 1);
             console.log(theDate, " client disconected !");
-        }
-        if (id == "NodeMCU") {
-            sendTo(0, 'drone disconnected')
+        } else {
+            sendTo(0, 'drone disconnected', clientindex, droneindex, ws);
             console.log(theDate, " Drone disconnected!");
             user.splice(droneindex, 1);
         }
-
     });
 });
 
-
-
 function isJson(item) {
-    item = typeof item !== "string" ?
-        JSON.stringify(item) :
-        item;
-
+    item = typeof item !== "string" ? JSON.stringify(item) : item;
     try {
         item = JSON.parse(item);
     } catch (e) {
         return false;
     }
-
     if (typeof item === "object" && item !== null) {
         return true;
-    }
-
-    return false;
-}
-
-
-
-function sendTo(who, message) {
-    // who  1 = drone, 0 = client
-    if (who == 0) {
-        if (clientindex == -1 || clientindex == undefined) {
-            console.log(theDate, " no client connected yet");
-        } else {
-            user[clientindex].client.send(message)
-        }
     } else {
-        if (droneindex == -1 || droneindex == undefined) {
-            console.log(theDate, " no drone connected yet");
-            ws.send(theDate + " drone not connected yet")
-        } else {
-            console.log('drone index: ', droneindex);
-            user[droneindex].drone.send(message)
-        }
+        return false;
     }
 }
+
+function sendTo(who, message, clientindex, droneindex, ws) {
+  // who  1 = drone, 0 = client
+  if (who == 0) {
+    if (clientindex == -1 || clientindex == undefined) {
+      console.log(theDate, " no client connected yet");
+    } else {
+      user[clientindex].client.send(message);
+    }
+  } else {
+    if (droneindex == -1 || droneindex == undefined) {
+      console.log(theDate, " no drone connected");
+      ws.send(theDate + " drone not connected yet");
+    } else {
+      console.log('drone index: ', droneindex);
+      user[droneindex].drone.send(message);
+    }
+  }
+}
+
 /*****************************************************WEB SOCKET PART END*****************************************************/
 server.listen(8080, function listening() {
     console.log(theDate, ' Listening on %d', server.address().port);

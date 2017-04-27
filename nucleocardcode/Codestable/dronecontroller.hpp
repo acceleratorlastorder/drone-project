@@ -1,6 +1,11 @@
 //#include <iostream>
 #include "mbed.h"
 
+/*************SERIAL********************/
+
+Serial pc(USBTX, USBRX); // tx, rx
+RawSerial esp8266(PC_12, PD_2); // TX, RX
+
 /********* ANALOG IN ************/
 /*
 AnalogIn a0(A0);
@@ -13,6 +18,14 @@ PwmOut pb13(PB_13);
 PwmOut pa15(PA_15);
 PwmOut pc7(PC_7);
 PwmOut pb5(PB_5);
+/********** DIGITAL IN ***********/
+DigitalIn  button(USER_BUTTON);
+
+/*********** DIGITAL OUT ***********/
+DigitalOut myled1(LED1);
+DigitalOut myled2(LED2);
+DigitalOut myled3(LED3);
+
 
 /*
 using namespace std;
@@ -55,7 +68,7 @@ void pwmManager(float rollRaw,float pitchRaw,float yawRaw,float throttleRaw)
 
 
     //std::cout << " y pitch raport cyclique flotant (RCF): " << ypitchrcf << " x roll raport cyclique flotant (RCF): " << xrollrcf << " y throttle raport cyclique flotant(RCF): " << ythrottle << " period: " << cycle << " multiplicator: " << multiplicator << " calcule (raport + ythrottlercf)/multiplicator " << (raport + ythrottlercf)/multiplicator << endl;
-    // pc.printf("rollrcf: %f ,pitchrcf: %f , yawrcf: %f, throttlercf: %f \n",rollrcf, pitchrcf, yawrcf, throttlercf);
+ //    pc.printf("rollrcf: %f ,pitchrcf: %f , yawrcf: %f, throttlercf: %f \n",rollrcf, pitchrcf, yawrcf, throttlercf);
     // pc6.period_ms(cycle);
     // pb15.period_ms(20);
 
