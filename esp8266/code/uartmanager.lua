@@ -7,7 +7,7 @@ local U = {}
 
 
 function sendData (datatosend)
-    uart.write(0, datatosend .. '\0')
+    uart.write(0, datatosend..tonumber(0x00, 16))
 end
 
 U.sendData = sendData

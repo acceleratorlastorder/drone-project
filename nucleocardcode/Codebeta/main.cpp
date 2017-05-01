@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     esp8266.baud(115200);
 
     pc.printf("hello user :) \n");
-    
+
     esp8266.attach(&rxmanager); // event starting the function rxmanager once there is a char received on the serial esp8266 and WILL RECALL THE FUNCTION AS A LOOP as long the buffer is not empty
     while (1) {
         pc.printf("testultime: %s and roll %f\n", test, roll);
@@ -88,5 +88,41 @@ int main(int argc, char *argv[])
                                      indicatorvalue();
                              */
     }
+
+}
+
+
+
+
+void rxManager()
+{
+    tmp = esp8266.getc();
+    if(!(tmp == '[' || tmp == '\0')) {
+        if(tmp==']') {
+            arrayFromESP[i]=tmp;
+            if (s==3) {
+            throttl = atof(buffer);
+            }
+            tmp = NULL;
+            s=0;
+            i=0;
+        } else if(tmp==',') {
+            i=0;
+            if(s==0) {
+                roll = atof(buffer);
+            }if(s==1) {
+                pitch = atof(buffer);
+            }
+            if(s==2) {
+                yaw = atof(buffer);
+            }else{
+              s++;
+            }
+            memset (buffer,0,10);
+        } else {
+            buffer[i]=tmp;
+        }
+    }
+    i++;
 
 }

@@ -28,10 +28,10 @@ function settheinterval() {
 
 function createJSON(roll, pitch, yaw, throttle) {
     status = JSON.stringify([
-        roll.toFixed(6),
-        pitch.toFixed(6),
-        yaw.toFixed(6),
-        throttle.toFixed(6)
+        parseFloat(roll.toFixed(6), 10),
+        parseFloat(pitch.toFixed(6), 10),
+        parseFloat(yaw.toFixed(6), 10),
+        parseFloat(throttle.toFixed(6), 10)
     ]);
     return status;
 };
@@ -53,7 +53,7 @@ function gamepadlistener() {
             roll = (gp.axes[2] + 1) / 2;
             pitch = (gp.axes[1] + 1) / 2;
             yaw = (gp.axes[0] + 1) / 2;
-            //    shorterFloat();
+            //shorterFloat();
             //createJSON(roll, pitch, yaw, throttle);
             //  buffer.push(status);
             //          if (isStatusHaschanged()) {
