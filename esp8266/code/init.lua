@@ -7,19 +7,6 @@ print ("init the esp8266")
     tmr.delay(500000)   -- wait 1,000,000 us = 1 second
     gpio.write(6, gpio.HIGH)
 
-      
-    gpio.write(3, gpio.HIGH)
-    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
-    gpio.write(3, gpio.LOW)
-    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
-    gpio.write(3, gpio.HIGH)
-    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
-    gpio.write(3, gpio.LOW)
-    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
-    gpio.write(3, gpio.HIGH)
-    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
-    gpio.write(3, gpio.LOW)
-    
 print('collectgarbage: ',collectgarbage())
 
 dofile ("wificonnect.lua")

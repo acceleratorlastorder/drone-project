@@ -16,6 +16,11 @@ local function startwebsocket()
   ws:on("close", function(_, status)
   --  print('connection closed', status)
     ws = nil -- required to lua gc the websocket client
+    print("ws lost")
+    gpio.mode(6, gpio.OUTPUT)
+    gpio.write(6, gpio.LOW)
+    tmr.delay(500000)   -- wait 1,000,000 us = 1 second
+    gpio.write(6, gpio.HIGH)
     startwebsocket()
   end)
   ws:connect('ws://192.168.1.13:8080')  
