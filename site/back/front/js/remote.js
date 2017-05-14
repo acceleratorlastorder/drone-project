@@ -52,7 +52,7 @@ function gamepadlistener() {
             throttle = ((gp.axes[3] + 1) + (gp.axes[4] + 1)) / 4;
             roll = (gp.axes[2] + 1) / 2;
             if (roll <= 0) {
-              roll = 0.000001;
+              roll = 0.000001;// to fix the problem on the STM32 F767ZI about the array integrity causing roll at very low or negative value due to bad transmission from the UART
             }
             pitch = (gp.axes[1] + 1) / 2;
             yaw = (gp.axes[0] + 1) / 2;
