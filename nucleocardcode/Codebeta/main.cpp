@@ -90,39 +90,3 @@ int main(int argc, char *argv[])
     }
 
 }
-
-
-
-
-void rxManager()
-{
-    tmp = esp8266.getc();
-    if(!(tmp == '[' || tmp == '\0')) {
-        if(tmp==']') {
-            arrayFromESP[i]=tmp;
-            if (s==3) {
-            throttl = atof(buffer);
-            }
-            tmp = NULL;
-            s=0;
-            i=0;
-        } else if(tmp==',') {
-            i=0;
-            if(s==0) {
-                roll = atof(buffer);
-            }if(s==1) {
-                pitch = atof(buffer);
-            }
-            if(s==2) {
-                yaw = atof(buffer);
-            }else{
-              s++;
-            }
-            memset (buffer,0,10);
-        } else {
-            buffer[i]=tmp;
-        }
-    }
-    i++;
-
-}

@@ -1,6 +1,6 @@
 local function startwebsocket()
   local test = require ('uartmanager')
-  --node.setcpufreq(node.CPU160MHZ)
+  node.setcpufreq(node.CPU160MHZ)
   ws = websocket.createClient()
   ws:config({headers={['User-Agent']='NodeMCU',['Id']='Drone'}})
   ws:on("connection", function(ws)
