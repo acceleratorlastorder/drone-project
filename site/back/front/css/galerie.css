@@ -54,7 +54,7 @@ h1 {
 
 #menu>*:hover {}
 
-#buttongallerie:hover {
+#button:hover {
   color: blue;
 }
 
@@ -158,3 +158,4 @@ color: rgba(154, 154, 157, 0.8);
   clear: both;
   height: 3px;
 }
+button
