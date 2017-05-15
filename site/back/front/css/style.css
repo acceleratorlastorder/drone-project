@@ -59,19 +59,40 @@ h1 {
 }
 
 #title {
-  background: repeating-linear-gradient(
-    45deg,
-    #606dbc,
-    #606dbc 4px,
-    #465298 4px,
-    #465298 8px
-  );
+  background: repeating-linear-gradient( 45deg, rgba(33, 35, 37, 0.8), rgba(33, 35, 37, 0.8) 4px, rgba(20, 20, 20, 0.9) 4px, rgba(20, 20, 20, 0.9) 8px);
   height: 100px;
 }
 
 #title h1 {
   color: rgba(200, 200, 200, 1);
   padding-top: calc(50px - 1em);
+}
+
+#presentation {
+  margin-top: 35px;
+  margin-left: auto;
+}
+
+.picAndText {
+  margin: auto;
+  width: 60%;
+  background-color: blue;
+}
+
+.picAndText>* {
+  max-width: 100%;
+}
+
+.picAndText img {
+
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.prenstationTitle {
+  font-size: 3em;
+  color: grey;
+  padding: 0;
 }
 
 .clear {
