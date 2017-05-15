@@ -99,6 +99,8 @@ h1 {
 }
 
 .prenstationTitle h1 {
+  float: left;
+  font-size: 1.1em;
   font-style: arial;
   padding: 0;
 }
@@ -112,6 +114,21 @@ h1 {
   font-size: 3em;
   color: grey;
   padding: 0;
+}
+
+.custommenu>* {
+  display: block;
+  margin-right: 50px;
+  float: right;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 100px;
+  text-align: center;
+}
+
+.custombutton:hover {
+  color: blue;
 }
 
 .clear {
