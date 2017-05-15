@@ -73,6 +73,11 @@ h1 {
   margin-left: auto;
 }
 
+#content{
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+}
 .picAndText {
   display: flex;
   margin: auto;
@@ -158,4 +163,3 @@ color: rgba(154, 154, 157, 0.8);
   clear: both;
   height: 3px;
 }
-button
