@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: rgba(215, 209, 211, 0.9);
+  background-color: #FFF;
 }
 
 footer {
@@ -74,9 +74,16 @@ h1 {
 }
 
 .picAndText {
+  display: flex;
   margin: auto;
+  justify-content: space-around;
+  flex-direction: column;
   width: 60%;
-  background-color: blue;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding-top: 15px;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 25px;
 }
 
 .picAndText>* {
@@ -84,9 +91,21 @@ h1 {
 }
 
 .picAndText img {
-
+  flex: 3;
   margin: 0 auto;
   max-width: 80%;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+
+.prenstationTitle h1 {
+  font-style: arial;
+  padding: 0;
+}
+
+.picAndText p {
+  font-size: 1.2em;
+  color: grey;
 }
 
 .prenstationTitle {
