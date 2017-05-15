@@ -73,11 +73,24 @@ h1 {
   margin-left: auto;
 }
 
-#content{
-display: flex;
-justify-content: space-around;
-flex-direction: row;
+#content {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
 }
+
+.imgcontainer {
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.imgcontainer img {
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 15px;
+  max-width: 80%;
+}
+
 .picAndText {
   display: flex;
   margin: auto;
@@ -132,8 +145,8 @@ flex-direction: row;
   margin: auto;
 }
 
-.prenstationTitle.center h1{
-color: rgba(154, 154, 157, 0.8);
+.prenstationTitle.center h1 {
+  color: rgba(154, 154, 157, 0.8);
 }
 
 .custommenu>* {
