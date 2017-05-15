@@ -12,7 +12,7 @@ rouge	-> VCC
 bleu	-> X
 jaune	-> X
 
-port récépteur
+port rÃ©cÃ©pteur
 
 NC
 NC
@@ -22,7 +22,7 @@ NC
 NC
 NC
 
-setting de démarrage mini
+setting de dÃ©marrage mini
 
 VTOLMotorNW	-> 1047
 VTOLMotorNE	-> 1054
