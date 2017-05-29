@@ -41,7 +41,7 @@ h1 {
 }
 
 #menu>* {
-  margin-right: 50px;
+  margin-right: 30px;
   float: right;
   display: block;
   background-color: white;
@@ -53,7 +53,9 @@ h1 {
 }
 
 #menu>*:hover {}
+#menu:first-child{
 
+}
 #buttongallerie:hover {
   color: blue;
 }
@@ -71,6 +73,24 @@ h1 {
 #presentation {
   margin-top: 35px;
   margin-left: auto;
+}
+
+#content {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.imgcontainer {
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.imgcontainer img {
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 15px;
+  max-width: 80%;
 }
 
 .picAndText {
@@ -127,8 +147,8 @@ h1 {
   margin: auto;
 }
 
-.prenstationTitle.center h1{
-color: rgba(154, 154, 157, 0.8);
+.prenstationTitle.center h1 {
+  color: rgba(154, 154, 157, 0.8);
 }
 
 .custommenu>* {

@@ -23,7 +23,7 @@ local function startwebsocket()
     gpio.write(6, gpio.HIGH)
     startwebsocket()
   end)
-  ws:connect('ws://192.168.1.13:8080')  
+  ws:connect('ws://192.168.2.20:8080')  
 end
 
 startwebsocket()

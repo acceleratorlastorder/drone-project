@@ -1,26 +1,87 @@
+body {
+  background-color: black;
+}
+
+h1, p {
+  color: white;
+}
+
 main {
-    display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+section {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
 }
 
 .asideRight H1, .asideLeft H1 {
-    text-align: center;
+  text-align: center;
+  color: black;
 }
 
 .asideLeft, .asideRight {
-    display: flex;
-    width: 50%;
-    flex-direction: column;
+  display: flex;
+  width: 46%;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: rgba(215, 215, 219, 0.7);
 }
 
 .dataFromController {
-    display: flex;
-    margin: auto;
+  display: flex;
+  margin: auto;
 }
 
-.asideLeft {
-    background-color: teal;
+.asideLeft {}
+
+.asideRight {}
+
+@media (max-width: 1000px) {
+  body {
+    margin: 10px;
+  }
+  main {
+    width: 100%;
+  }
+  section {
+    flex-direction: row;
+  }
+  .asideLeft, .asideRight {
+    width: 100%;
+    flex-direction: column;
+    border: 0px;
+    border-radius: 0px;
+    background-color: rgba(215, 215, 219, 0.7);
+  }
+  .asideLeft {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  .asideRight {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
 }
 
-.asideRight {
-    background-color: red;
+@media (orientation: portrait) {
+  body {
+    margin: 10px;
+  }
+  main {
+    width: 100%;
+  }
+  section {
+    flex-direction: column;
+  }
+  .asideLeft, .asideRight {
+    width: 100%;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgba(215, 215, 219, 0.7);
+  }
 }
