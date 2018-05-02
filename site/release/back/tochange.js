@@ -37,9 +37,7 @@ wss.on('connection', function connection(ws) {
         console.log(theDate, " clientindex: ", clientindex);
     } else {
         console.log(theDate, " Connection from: ", id);
-        dronesocket = {
-            drone: ws
-        };
+        dronesocket = { drone: ws };
         user.push(dronesocket);
         droneindex = user.indexOf(dronesocket);
         console.log(theDate, " droneindex: ", droneindex);

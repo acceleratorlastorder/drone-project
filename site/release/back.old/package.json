@@ -1,0 +1,16 @@
+{
+  "name": "drone-test",
+  "version": "0.0.1",
+  "description": "drone-controled-by-wifi",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "ws": "^3.3.3"
+  }
+}

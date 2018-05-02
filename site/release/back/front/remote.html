@@ -8,17 +8,19 @@
 </head>
 
 <body>
+  <h1>This remote works only with the PS4 controller</h1>
   <button onclick="sendtesultime()" type="button" name="button">test send one data</button>
-    <p>set the interval between each refresh of the gamepad status(low value may make the browser crash or being slow)<br>you have to reconnect the controller to see the effect on the interval timing</p>
-    <input id="input" type="text" name="" value="">
+    <p>set the interval between each refresh of the gamepad status(low value may make the browser crash or being slow)<br>you have to disconect and reconnect the controller to see the effect on the interval timing</p>
+    <input id="intervalinput" type="text" name="intervalinput" value=""/>
     <button id="button" type="button" name="button">change the interval</button>
     <!--  <p>send data to server ?<input type="checkbox" name="" value=""/></p> -->
     <p id="info"></p>
     <main>
+      <section>
+
         <aside class="asideLeft">
             <h1>Data from the controller:</h1>
             <article class="dataFromController">
-
                 <section id="name">
                     <ul>
                         Button:
@@ -94,8 +96,9 @@
                 </section>
             </article>
         </aside>
+      </section>
     </main>
-    <script src="js/remote.min.js" charset="utf-8"></script>
+    <script src="js/remote.js" charset="utf-8"></script>
     <!--     <script src="application.js" charset="utf-8"></script>-->
 </body>
 
