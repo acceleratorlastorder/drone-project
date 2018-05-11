@@ -22,11 +22,11 @@ var user = [];
 var droneindex, dronesocket, clientindex, clientsocket;
 let connectedUser = 0;
 // drone = 777, client = 888
-wss.on('connection', function connection(ws) {
-    const location = url.parse(ws.upgradeReq.url, true);
-    console.log(theDate, " something is connected ws :", ws.upgradeReq['headers']['user-agent']);
-    var id = ws.upgradeReq['headers']['user-agent'];
-    var socketkey = ws.upgradeReq.headers['sec-websocket-key'];
+wss.on('connection', function connection(ws, req) {
+    let location = url.parse(req.url, true);
+    console.log(theDate, " something is connected ws :", req['headers']['user-agent']);
+    var id = req['headers']['user-agent'];
+    var socketkey = req.headers['sec-websocket-key'];
     if (id != "NodeMCU") {
         console.log(theDate, " Connection from: ", id);
         clientsocket = {
@@ -59,7 +59,7 @@ wss.on('connection', function connection(ws) {
         }
     });
     ws.on('close', function() {
-        socketkey = ws.upgradeReq.headers['sec-websocket-key'];
+        socketkey = req.headers['sec-websocket-key'];
         console.log('connection with the client ', socketkey, ' closed');
         if (id != "NodeMCU") {
             user.splice(clientindex, 1);
