@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
   console.log("DOM loaded launching functions");
   start();
 });
@@ -6,20 +6,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function start() {
   gamepadlistener()
 };
-
-var gamepadTimeout;
+let gamepadTimeout, inputvalue, status, roll, pitch, yaw, throttle;
 let inputbutton = document.getElementById("button");
-inputbutton.addEventListener('click', settheinterval, false);
-let inputvalue, status;
+inputbutton.addEventListener('click', setTheInterval, false);
 let info = document.getElementById("info");
 let interval = 80;
 //let cross, triangle, circle, square, dpadleft, dpadtop, dpadright, dpadbottom, l1, l2, l3, r1, r2, r3, share, options, psbutton, touchpad;
 let statusli = document.querySelectorAll(".status");
 let limessage = document.getElementById("limessage");
 let buffer = [];
-var roll, pitch, yaw, throttle;
 
-function settheinterval() {
+function setTheInterval() {
   window.clearInterval(gamepadTimeout);
   inputvalue = document.getElementById("intervalinput").value;
   interval = inputvalue;
@@ -37,11 +34,11 @@ function createJSON(roll, pitch, yaw, throttle) {
 };
 
 function gamepadlistener() {
-  window.addEventListener("gamepaddisconnected", function(e) {
+  window.addEventListener("gamepaddisconnected", function (e) {
     console.log("Contrôleur n°%d déconnecté : %s", e.gamepad.index, e.gamepad.id);
     window.clearInterval(gamepadTimeout);
   });
-  window.addEventListener("gamepadconnected", function(e) {
+  window.addEventListener("gamepadconnected", function (e) {
     var gp = navigator.getGamepads()[0];
     //  console.log("gamepads: ", gp);
     console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.", gp.index, gp.id, gp.buttons.length, gp.axes.length);
@@ -81,10 +78,7 @@ function gamepadlistener() {
   })
 }
 
-function makeJSONFixedLength() {
-
-
-}
+function makeJSONFixedLength() {}
 
 function isStatusHaschanged() {
   if (buffer[1] == undefined) {
@@ -107,23 +101,19 @@ function shorterFloat() {
   pitch += somethingelse;
   yaw += somethingelse;
   throttle += somethingelse;
-
   roll = Math.round(roll * something) / something;
   pitch = Math.round(pitch * something) / something;
   yaw = Math.round(yaw * something) / something;
   throttle = Math.round(throttle * something) / something;
 }
 var testultime = [0.5, 0.5, 0.5, 0.000000];
-
-
 var host = window.document.location.host.replace(/:.*/, '');
-console.log("host: ", host, "full address is then ", 'ws://' + host + ':8080');
 var ws = new WebSocket('ws://' + host + ':8080');
-
-ws.onmessage = function(event) {
+ws.onmessage = function (event) {
   console.log("message received event: ", event.data);
   limessage.innerHTML = event.data;
 };
+console.log("host: ", host, "full address is then ", 'ws://' + host + ':8080');
 /*
 function sendIdentityJSON(identityJSONtoparse) {
     let id = JSON.parse(identityJSONtoparse);
@@ -148,9 +138,7 @@ function getInputValue() {
   let inputValue = input.value;
   return inputValue;
 }
-
 let controllerdata = {}
-
 /*    console.log(axes);
 console.log("carré: ", buttons[0].pressed);
 console.log("croix: ", buttons[1].pressed);
