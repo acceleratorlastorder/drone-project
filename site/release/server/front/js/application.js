@@ -21,7 +21,7 @@ droneWifi_V1_App.controller("drone-wifi-v1-ctrl", function PhoneListController($
   this.getLanguageFiles = function () {
     $http({
       method: 'GET',
-      url: '/data/language_fr-fr.json',
+      url: './data/language_fr-fr.json',
       headers: {
         'Accept': 'application/json'
       }

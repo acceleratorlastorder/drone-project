@@ -4,7 +4,7 @@
   templateController.directive("home", function () {
     return {
       restrict: "E",
-      templateUrl: "tpl/home.tpl.html",
+      templateUrl: "./tpl/home.tpl.html",
       controller: function () {},
       controllerAs: "home"
     };
@@ -12,11 +12,11 @@
   templateController.directive("gallery", function () {
     return {
       restrict: "E",
-      templateUrl: "tpl/gallery.tpl.html",
+      templateUrl: "./tpl/gallery.tpl.html",
       controller: function ($scope, $http) {
         $http({
           method: 'GET',
-          url: '/data/gallery.json',
+          url: './data/gallery.json',
           headers: {
             'Accept': 'application/json'
           }
