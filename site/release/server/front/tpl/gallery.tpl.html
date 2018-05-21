@@ -1,0 +1,103 @@
+<section id="content">
+
+  <h1>LOL</h1>
+  <section flex="100" layout-wrap layout="row" layout-align="space-around center" ng-if="galleryArticleIsReady">
+    <article flex="30" ng-repeat="article in gallery.articles track by $index" class="{{article.className}}">
+      <section flex="100" layout="column" layout-align="space-around center">
+        <!--
+        <a ng-show="{{article.hasImage}}" href="{{article.picture.url + (article.picture.width && article.picture.height ? '=w' + article.picture.width + '-h' + article.picture.height : '')}}"></a>
+        -->​
+        <picture flex="100" layout="row" layout-align="center center" ng-class="article.picture.isPortrait ? 'transformPortraitIntoLandscape' : ''">
+          <source srcset="{{article.picture.url}}" type="{{article.picture.type}}" />
+          <img flex="95" src="{{article.picture.url}}" alt="{{article.picture.alt}}" />
+        </picture>
+        <video ng-show="{{article.hasVideo}}" controls>
+      <source src="{{article.video.url}}" type="{{article.video.type}}"/>
+      </video>
+        <p>{{getText(article.text)}}</p>
+      </section>
+    </article>
+  </section>
+
+
+  <article class="imgcontainer">
+    <div class="picandlinkcontainer">
+      <a href="/pictures/20170323_135519.jpg"> <img src="pictures/20170323_135519.jpg" alt="Carte wifi ESP8266 vue de devant." /> </a>
+      <p>Carte wifi ESP8266 vue de devant.</p>
+    </div>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170323_135614.jpg"> <img src="pictures/20170323_135614.jpg" alt="Carte wifi ESP8266 vue de dos." /> </a>
+    <p>Carte wifi ESP8266 vue de dos.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170327_191046.jpg"> <img src="pictures/20170327_191046.jpg" alt="Kit pour monter la structure du drone." /> </a>
+    <p>Kit pour monter la structure du drone.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170402_150906.jpg"> <img src="pictures/20170402_150906.jpg" alt="En plein montage." /> </a>
+    <p>En plein montage.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170402_151237.jpg"> <img src="pictures/20170402_151237.jpg" alt="Prise en main de la STM32 F7." /> </a>
+    <p>Prise en main de la STM32 F7.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170402_183036.jpg"> <img src="pictures/20170402_183036.jpg" alt="Structure du drone terminé, il est prêt pour les test de connection avec la STM32." /> </a>
+    <p>Structure du drone terminé, il est prêt pour les test de connection avec la STM32.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170409_031946.jpg"> <img src="pictures/20170409_031946.jpg" alt="Test de controle PWM en allumant très rapidement une led puis l'éteindre tout aussi vite." /> </a>
+    <p>Test de controle PWM en allumant très rapidement une led puis l'éteindre tout aussi vite.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170409_211230.jpg"> <img src="pictures/20170409_211230.jpg" alt="Mise en place de l'environement de test." /> </a>
+    <p>Mise en place de l'environement de test.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170409_211306_HDR.jpg"> <img src="pictures/20170409_211306_HDR.jpg" alt="Vérification des valeurs." /> </a>
+    <p>Vérification des valeurs.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="/pictures/20170424_004301.jpg"> <img src="pictures/20170424_004301.jpg" alt="Carte wifi branché à STM32 pour tester l'envoie de donnée et vérifier qu'elles soient bien prises en compte." /> </a>
+    <p>Carte wifi branché à STM32 pour tester l'envoie de donnée et vérifier qu'elles soient bien prises en compte.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="/pictures/20170425_101640.jpg"> <img src="pictures/20170425_101640.jpg" alt="Photo du drone préparé pour l'afterwork du mardi 25 avril à SimplonMars." /> </a>
+    <p>Photo du drone préparé pour l'afterwork du mardi 25 avril à SimplonMars.</p>
+  </article>
+  <article class="imgcontainer">
+    <a href="pictures/20170425_101648.jpg"> <img src="pictures/20170425_101648.jpg" alt="Photo de devant." /> </a>
+    <p>Photo de devant.</p>
+  </article>
+  <article class="videocontainer">
+    <video controls>
+    <source src="videos/20170417_142031.mp4" type="video/mp4"/>
+    </video>
+    <p>Test et calibration afin de controller le/les moteurs.</p>
+  </article>
+  <article class="videocontainer">
+    <video controls>
+    <source src="videos/20170417_201702.mp4" type="video/mp4"/>
+    </video>
+    <p>Controle du flight controlleur par un joystick et un potentiomètre.</p>
+  </article>
+  <article class="videocontainer">
+    <video controls>
+    <source src="videos/20170424_013719.mp4" type="video/mp4"/>
+    </video>
+    <p>Dernier test avant montage, controle depuis le site internet via une manette de PS4.</p>
+  </article>
+  <article class="videocontainer">
+    <video controls>
+    <source src="videos/besttry.mp4" type="video/mp4"/>
+    </video>
+    <p>Méilleurs essais obtenu pour l'instant.</p>
+  </article>
+  <article class="videocontainer">
+    <video controls>
+    <source src="videos/drone test compilation.mp4" type="video/mp4"/>
+    </video>
+    <p>Compilation d'une bonne partie des essais: beaucoup d'echecs.</p>
+  </article>
+</section>

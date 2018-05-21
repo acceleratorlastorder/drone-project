@@ -1,0 +1,22 @@
+{
+  "FR": {
+    "page_title": "Wifi Drone présentation",
+    "esp8266_from_the_front": "Carte wifi ESP8266 vue de devant.",
+    "esp8266_from_the_back": "Carte wifi ESP8266 vue de dos.",
+    "drone_kit_structure": "Kit pour monter la structure du drone.",
+    "curently_mounting_it": "En plein montage.",
+    "first_contact_with_the_stm32_f7": "Prise en main de la STM32 F7.",
+    "drone_structure_finished_ready_to_try_the_communication_with_the_stm32": "Structure du drone terminé, il est prêt pour les test de connection avec la STM32.",
+    "pwm_high_frequency_test_on_a_led": "Test de controle PWM en allumant très rapidement une led puis l'éteindre tout aussi vite.",
+    "setting_up_the_test_environnement": "Mise en place de l'environement de test.",
+    "joystick_values_verification": "Vérification des valeurs données par la carte depuis un joystick.",
+    "esp8266_connected_to_the_stm32_for_communication_test": "Carte wifi branché à la STM32 pour tester l'envoi de donnée et vérifier qu'elles soient bien prises en compte.",
+    "drone_prepared_for_the_simplonmars_afterwork": "Photo du drone préparé pour l'afterwork du mardi 25 avril à SimplonMars.",
+    "drone_picture_from_the_front": "Photo de devant.",
+    "motor_control_calibration": "Test et calibration afin de controller le/les moteurs.",
+    "flight_controller_receiving_command_from_a_joystick_and_a_potentiometer": "Controle du flight controlleur par un joystick et un potentiomètre.",
+    "last_test_before_mounting_it": "Dernier test avant montage, controle depuis le site internet via une manette de PS4.",
+    "best_trys_for_now": "Méilleurs essais obtenu pour l'instant.",
+    "compilation_of_fails": "Compilation d'une bonne partie des essais: beaucoup d'echecs."
+  }
+}

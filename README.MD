@@ -5,4 +5,7 @@ Make a drone working thought wifi (maybe later 3G/4G) with a distant server and 
 faire un drone capable de communiquer par wifi/3G/4G avec un serveur distant et être controlé par ce même serveur.
 
 
-#Website en construction : https://acceleratorlastorder.github.io/drone-project/site/release/back/front/index.html
+#Website en construction : https://acceleratorlastorder.github.io/drone-project/site/release/server/front/index.html
+
+
+to start use: "npm run getDependency"

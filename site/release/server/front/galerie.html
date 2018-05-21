@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <title>Galerie</title>
 </head>
 
@@ -26,6 +26,19 @@
       <h1>Wifi Drone Galerie</h1>
     </section>
     <section id="content">
+      <article ng-repeat="article in articles track by $index" class="{{article.className}}">
+        <section>
+          <a ng-if="hasImage" href="{{article.picture.url}}">
+            <img src="{{article.picture.url}}" alt="{{article.picture.alt}}" />
+          </a>
+          <video ng-if="hasVideo" controls>
+          <source src="{{article.video.url}}" type="{{getText(article.video.type)}}"/>
+          </video>
+          <p>{{getText(article.text)}}</p>
+        </section>
+      </article>
+
+
       <article class="imgcontainer">
         <div class="picandlinkcontainer">
           <a href="pictures/20170323_135519.jpg"> <img src="pictures/20170323_135519.jpg" alt="Carte wifi ESP8266 vue de devant." /> </a>

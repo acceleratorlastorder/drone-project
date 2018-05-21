@@ -79,6 +79,13 @@ h1 {
 }
 
 .imgcontainer {
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+/*
+.imgcontainer {
   padding: 10px;
   margin: 10px auto;
   width: 30%;
@@ -86,20 +93,39 @@ h1 {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-}
+}*/
 
 a>img {
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 15px;
 }
 
-.imgcontainer p {
-  margin: auto;
+.imgcontainer picture img {
+  border: 1px solid black;
+  border-radius: 15px;
 }
 
-.videocontainer{
+.imgcontainer picture {
+  margin: 0;
+}
+
+a>picture>img {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.transformPortraitIntoLandscape {
+  ransform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+
+.videocontainer {
   padding: 10px;
   margin: 10px auto;
   width: 30%;
@@ -108,9 +134,11 @@ a>img {
   display: flex;
   flex-direction: column;
 }
-.videocontainer video{
-max-width: 100%;
+
+.videocontainer video {
+  max-width: 100%;
 }
+
 .picandlinkcontainer {
   display: flex;
   justify-content: space-around;
@@ -142,7 +170,6 @@ max-width: 100%;
   border: 1px solid grey;
   border-radius: 15px;
 }
-
 
 .picAndText video {
   flex: 3;

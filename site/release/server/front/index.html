@@ -1,81 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="drone-wifi-v1" ng-cloak>
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  <link rel="stylesheet" href="/libs/angular/angular-material.min.css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <title>Drone Présentation</title>
 </head>
 
-<body>
+<body ng-controller="drone-wifi-v1-ctrl as dr_ctrl" ng-cloak>
   <header>
     <section id="headercontact">
       <p>Mail: mr.hamidi.okba@gmail.com</p>
       <p>Tel: 07.68.08.40.71</p>
     </section>
-    <nav>
-      <ol id="menu">
-        <li><a id="buttonremote" class="sitenavigationbutton" href="remote.html">REMOTE</a></li>
-        <li><a id="buttongallerie" class="sitenavigationbutton" href="galerie.html">GALERIE</a></li>
-      </ol>
+    <nav flex="100" layout="row" layout-align="end center">
+      <md-button ng-show="currentPage !== 'home'" class="md-raised md-primary" ng-click="dr_ctrl.pageRouter('home')">home</md-button>
+      <md-button ng-show="currentPage !== 'gallery'" class="md-raised md-primary" ng-click="dr_ctrl.pageRouter('gallery')">GALERIE</md-button>
+      <md-button class="md-raised md-primary" href="remote.html">REMOTE</md-button>
       <div class="clear"></div>
+      <md-button class="md-fab md-mini md-primary" ng-click="dr_ctrl.pageRouter('gallery')" >{{currentLang}}</md-button>
     </nav>
   </header>
   <main>
     <section id="title">
-      <h1>Wifi Drone présentation</h1>
+      <h1>{{getText("page_title")}}</h1>
     </section>
-    <section id="presentation">
-      <div class="picAndText">
-        <img src="pictures/20170425_101648.jpg"
-          alt="Drone vu de devant">
-        <div class="prenstationTitle">
-          <h1>Wifi Drone</h1>
-        </div>
-        <p>Le Wifi drone est un drone utilisant le wifi comme moyen de communication, il permet d'être controllé depuis un navigateur en temps quasi réel grace à la technologie WebSocket qui permet une communication continue avec un client </p>
-        <nav>
-          <ul class="custommenu">
-            <li><a class="custombutton" href="https://github.com/acceleratorlastorder/drone-project">GITHUB</a></li>
-          </ul>
-          <div class="clear"></div>
-        </nav>
-      </div>
-      <div class="picAndText">
-        <div class="prenstationTitle center">
-          <h1>Simulation de controle</h1>
-        </div>
-        <video controls>
-        <source src="videos/20170417_142031.mp4" type="video/mp4"/>
-        </video>
-        <p>Test des controles via un joystick et un potentiomètre branché à la carte controlleur. <br></p>
-      </div>
 
-      <div class="picAndText">
-        <div class="prenstationTitle center">
-          <h1>Premiers test extérieurs</h1>
-        </div>
-        <video controls>
-        <source src="videos/besttry.mp4" type="video/mp4"/>
-        </video>
-        <p>Test de stabilité du drone lors d'un vole en extérieur, il faut encore quelque ajustement, même si changer le controleur de vol voir toute la structure du drone semble être la meilleure idée <br></p>
+    <home ng-if="currentPage === 'home'">
+    </home>
+    <gallery ng-if="currentPage === 'gallery'">
+    </gallery>
 
-      </div>
-    </section>
   </main>
   <footer>
     <p class="byme">2016-2017 par Hamidi Okba</p>
     <p class="">Copyright (c) 2017 Copyright Holder All Rights Reserved.</p>
   </footer>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+  <script src="/libs/angular/angular.min.js"></script>
+  <script src="/libs/angular/angular-animate.min.js"></script>
+  <script src="/libs/angular/angular-aria.min.js"></script>
+  <script src="/libs/angular/angular-messages.min.js"></script>
+  <script src="/libs/angular/angular-material.min.js"></script>
+  <script src="/js/application.js"></script>
+  <script src="/js/controller.js"></script>
 </body>
 
 </html>
