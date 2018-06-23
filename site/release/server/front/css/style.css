@@ -146,6 +146,12 @@ div.mediaviwerProgressContainer {
   height: 100%;
 }
 
+section.videoContainer {
+  margin: auto;
+  width: 55%;
+  height: 450px;
+}
+
 /*old code*/
 
 #mediaviewer-dialog {
