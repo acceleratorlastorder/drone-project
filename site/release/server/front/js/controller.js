@@ -21,7 +21,7 @@
             'Accept': 'application/json'
           }
         }).then(function successCallback(response) {
-          console.error("success response : ", response);
+          //console.error("success response : ", response);
           $scope.gallery = response.data;
           if (response.data.articles.length > 0) {
             $scope.galleryArticleIsReady = true;
