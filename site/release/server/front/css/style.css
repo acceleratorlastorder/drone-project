@@ -151,6 +151,8 @@ div.mediaviwerProgressContainer {
 #mediaviewer-dialog {
   max-width: 90%;
   max-height: 90%;
+  min-width: 300px;
+  min-height: 150px;
   border-radius: 20px;
   background-color: white;
 }
