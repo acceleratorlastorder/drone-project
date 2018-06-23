@@ -1,9 +1,14 @@
 let date = new Date();
 let theDate = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "-" + date.getHours() + ":" + date.getMinutes() + ": ";
-
-const options = {year: "numeric", month: "numeric", day: "numeric",
-           hour: "numeric", minute: "numeric", second: "numeric",
-           hour12: false};
+const options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: false
+};
 
 function getMillisecondsStr(date) {
   return getDate(date) + "." + date.getMilliseconds() + ": ";
@@ -25,9 +30,10 @@ app.use(function (req, res, next) {
 });
 /*****************************************************WEB SOCKET PART START*****************************************************/
 const wss = new WebSocket.Server({ server });
-var user = [];
-var droneindex, dronesocket, clientindex, clientsocket;
+var user = {};
+var dronesocket, clientsocket;
 let connectedUser = 0;
+let lastSentArray = null;
 // drone = 777, client = 888
 wss.on('connection', function connection(ws, req) {
   const location = url.parse(req.url, true);
@@ -36,18 +42,13 @@ wss.on('connection', function connection(ws, req) {
   var socketkey = req.headers['sec-websocket-key'];
   if (id != "NodeMCU") {
     console.log(getDate(), " Connection from: ", id);
-    clientsocket = { client: ws };
-    user.push(clientsocket);
-    clientindex = user.indexOf(clientsocket);
-    console.log(getDate(), " clientindex: ", clientindex);
+    //Create a client ID later
+    user.client = ws;
   } else {
     console.log(getDate(), " Connection from: ", id);
-    dronesocket = { drone: ws };
-    user.push(dronesocket);
-    droneindex = user.indexOf(dronesocket);
-    console.log(getDate(), " droneindex: ", droneindex);
+    user.drone = ws;
   }
-  connectedUser = user.length;
+  connectedUser = Object.keys(user).length;
   ws.send('hello we have at this moment ' + connectedUser + ' visitor ' + (connectedUser === 1 ? " and it's you!" : ""));
   // You might use location.query.access_token to authenticate or share sessions
   ws.on('message', function incoming(message) {
@@ -55,21 +56,22 @@ wss.on('connection', function connection(ws, req) {
     console.log(getDate(), " got message from: ", id);
     console.log(getMillisecondsStr(date), ' received: ', message);
     if (id != "NodeMCU") {
-      sendTo(1, message, clientindex, droneindex, ws);
+      lastSentArray = message;
+      sendTo("drone", message, ws);
     } else {
-      sendTo(0, message, clientindex, droneindex, ws);
+      sendTo("client", message, ws);
     }
   });
   ws.on('close', function () {
     socketkey = req.headers['sec-websocket-key'];
     console.log('connection with the client ', socketkey, ' closed');
     if (id != "NodeMCU") {
-      user.splice(clientindex, 1);
+      user.client = null;
       console.log(getDate(), " client disconected !");
     } else {
-      sendTo(0, 'drone disconnected', clientindex, droneindex, ws);
+      sendTo("client", 'drone disconnected', ws);
       console.log(getDate(), " Drone disconnected!");
-      user.splice(droneindex, 1);
+      user.drone = null;
     }
   });
 });
@@ -88,23 +90,33 @@ function isJson(item) {
   }
 }
 
-function sendTo(who, message, clientindex, droneindex, ws) {
-  // who  1 = drone, 0 = client
-  if (who == 0) {
-    if (clientindex == -1 || clientindex == undefined) {
-      console.log(getDate(), " no client connected yet");
+function sendTo(who, message, ws) {
+  if (who === "client") {
+    if (user.client) {
+      user.client.send(message);
     } else {
-      user[clientindex].client.send(message);
+      console.log(getDate(), " no client connected yet");
     }
   } else {
-    if (droneindex == -1 || droneindex == undefined) {
+    if (user.drone) {
+      user.drone.send(message);
+    } else {
       console.log(getDate(), " no drone connected");
       ws.send(getDate() + " drone not connected yet");
-    } else {
-      console.log("drone index: ", droneindex);
-      user[droneindex].drone.send(message);
     }
   }
+}
+
+function recoveryOnLostConnection() {
+  //maybe implent it into the drone C code
+  setInterval(function () {
+    if (lastSentArray[3] > 0) {
+      lastSentArray = [lastSentArray[0], lastSentArray[1], lastSentArray[2], (lastSentArray[3] -= 0.01)]
+    } else {
+      lastSentArray = null;
+      console.log("drone is safe to touch");
+    }
+  }, 60);
 }
 /*****************************************************WEB SOCKET PART END*****************************************************/
 server.listen(8080, function listening() {
