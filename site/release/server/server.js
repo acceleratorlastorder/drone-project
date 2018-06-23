@@ -48,7 +48,7 @@ wss.on('connection', function connection(ws, req) {
     console.log(getDate(), " droneindex: ", droneindex);
   }
   connectedUser = user.length;
-  ws.send('hello we have at this moment ' + connectedUser + ' visitor');
+  ws.send('hello we have at this moment ' + connectedUser + ' visitor ' + (connectedUser === 1 ? " and it's you!" : ""));
   // You might use location.query.access_token to authenticate or share sessions
   ws.on('message', function incoming(message) {
     date = new Date();
