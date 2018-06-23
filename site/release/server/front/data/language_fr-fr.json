@@ -1,6 +1,7 @@
 {
   "FR": {
     "page_title": "Wifi Drone présentation",
+    "gallery_picture_tooltip": "Agrandir",
     "esp8266_from_the_front": "Carte wifi ESP8266 vue de devant.",
     "esp8266_from_the_back": "Carte wifi ESP8266 vue de dos.",
     "drone_kit_structure": "Kit pour monter la structure du drone.",

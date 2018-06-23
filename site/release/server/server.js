@@ -101,13 +101,13 @@ function sendTo(who, message, clientindex, droneindex, ws) {
       console.log(getDate(), " no drone connected");
       ws.send(getDate() + " drone not connected yet");
     } else {
-      console.log('drone index: ', droneindex);
+      console.log("drone index: ", droneindex);
       user[droneindex].drone.send(message);
     }
   }
 }
 /*****************************************************WEB SOCKET PART END*****************************************************/
 server.listen(8080, function listening() {
-  console.log(getDate(), ' Listening on %d', server.address().port);
+  console.log(getDate(), " Listening on", server.address().port);
 });
 console.log(getDate(), " server ", server.address());

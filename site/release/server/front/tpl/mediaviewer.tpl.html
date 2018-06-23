@@ -1,0 +1,11 @@
+<md-dialog id="mediaviewer-dialog" ng-class="bigMediaCtrl.mediaObj.isPortrait ? 'isPortrait' : ''" aria-label="mediaviewer" layout="row">
+  <section class="{{loadingDone ? 'loadingDone' : 'isLoading'}}">
+    <div ng-if="!loadingDone" layout="row" layout-sm="column" layout-align="center center">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <picture ng-style="getImageProperties(bigMediaCtrl.mediaObj)">
+      <source ng-srcset="{{bigMediaCtrl.mediaObj.urlWithSize}}" type="{{bigMediaCtrl.mediaObj.type}}" />
+      <img async ng-src="{{bigMediaCtrl.mediaObj.url}}" alt="{{bigMediaCtrl.mediaObj.alt}}" imageonload/>
+    </picture>
+  </section>
+</md-dialog>

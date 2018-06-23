@@ -16,7 +16,7 @@
       controller: function ($scope, $http) {
         $http({
           method: 'GET',
-          url: './data/gallery.json',
+          url: "./data/gallery.json",
           headers: {
             'Accept': 'application/json'
           }

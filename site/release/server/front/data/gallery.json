@@ -26,6 +26,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/5V1XszE6nSb0-CxF05ogNciIIoEKwMr7xYIcT0uXFlc7_oBa20MuOcmG3I6woVx5G08nZw8n-jPGwlnFOA6BXkhYup3Wl3ut-0ycdUBPCbZyCVGJAFK_pYkL1Kb78QX23N0TzImDVw",
         "alt": "drone_kit_structure"
@@ -36,6 +38,8 @@
       "className": "imgcontainer",
       "picture": {
         "isPortrait": true,
+        "width": 2988,
+        "height": 5312,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/irrtbPL3vWgyIP8YZjxL5xR62dtlmah4GzsyqmGATXaiUbVSfQfbwf8bNMfR1Hl_K1Kk0xYlNDxBJ3SO9lejrT6S6Lm9E1tSZvYCihazEhegLQfDItdSWo1F_ZKm51M6Ecia65dIGA",
         "alt": "curently_mounting_it"
@@ -46,6 +50,8 @@
       "className": "imgcontainer",
       "picture": {
         "isPortrait": true,
+        "width": 2988,
+        "height": 5312,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/uhrOwQ7h5koiVk4DaDIoIhlJb8mJvLa4fkwaNaD93I9RthjK70KHp9AvtrltgoIcbA_bsS0N-5VyDpL-h2fiuHJeutz6q9KfsX8IKpyAItQCnWw4xV384NINCNSvv4yDkEPDWIXm1g",
         "alt": "first_contact_with_the_stm32_f7"
@@ -55,6 +61,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/vkwzEpQLWDWPvtWnzypzxlvQEthsKNz9WGdNsvER29Um0Gne1gFIVTdFJe7lrL0TV6rfvPXWFBCAKflumS6CE2-uYUurHJzhWLNg5_ZFPiOS3wM-5jq0wuH10_hW9cRJilO4ISxQdg",
         "alt": "drone_structure_finished_ready_to_try_the_communication_with_the_stm32"
@@ -64,6 +72,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/J16wRntRjvFxx6OmtUCKDd9vC55rJdpH_Fn7z5hK7i-A85AGuvQpZgueLZfL09NWNsdxhA1Uc34I11lUSSO2q0NVh8mq3_LEvzOHEI3Pv6X_lt4jJOxEED6dJIDGmfw9SZ2J2HrO5w",
         "alt": "pwm_high_frequency_test_on_a_led"
@@ -73,6 +83,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/3WA7YYiZ3VJkiB4onwZy7kSQn2QiNKpdz7p5e3W3JF2hog4L737Pdwkkby1r4f5CaJySHPZOf8IibALthWTYcy_AkslQMuUHeR-IW0mWIUNVH6e0jIT7Jc5YD_g6LtBc6vwno4nf2w",
         "alt": "setting_up_the_test_environnement"
@@ -82,6 +94,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/dAsxD5LQQaa1hygfMsdZqcDEM04V1CIr1py3zAKvq4Kjvf9US_0cm1c6rwi8cG5AX9xVyJVQlojq2mmnu1f1bWACrtaDdq6x-Qz8b6jsrkcj-OD2QcHBN9FeMnhx400Deo0NDFoqzQ",
         "alt": "joystick_values_verification"
@@ -91,6 +105,9 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "isPortrait": true,
+        "width": 2988,
+        "height": 5312,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/cZat1XTHL8ZAzeyMn3h4ziF-8dz3_N3OqMIQdEW6th_h0LEAz8amK6CX_KTEItVSpnR9BkaVqSzSX5EYapHT5to5hqSjXHanESKbDzzuzFBM7uZ12g9U80f92Q7lyDko5QLCWCoUuA",
         "alt": "esp8266_connected_to_the_stm32_for_communication_test"
@@ -100,6 +117,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/nCoGUZP6txpH7T61RcnEWBbwo3nBj_qRQQJn3LYoOJI4CCukMFB4i23UZVsw0pr6CpzLOakd6kG65qGDO3Y3lfA6Gc_NN38VjZHwIStmE4ygeb0CmktNPt_7rS1AYCJ7iFlqiqIrBw",
         "alt": "drone_prepared_for_the_simplonmars_afterwork"
@@ -109,6 +128,8 @@
       "hasImage": true,
       "className": "imgcontainer",
       "picture": {
+        "width": 5312,
+        "height": 2988,
         "type": "image/jpeg",
         "url": "https://lh3.googleusercontent.com/T72pIdjOEHvJcARpdsnQMFN1w2iwxYuiK02eCtp7c0m9Cl6KvxoqUOBBGzzvBnJZqkw8-huANYi_dTrmcoqTtu_H_43rB12-L47IevC14jERmnam2ot4E9ozz88szZ3qIgVHLLTqog",
         "alt": "drone_picture_from_the_front"
@@ -118,7 +139,7 @@
       "hasVideo": true,
       "className": "videocontainer",
       "video": {
-        "url": "https://lh3.googleusercontent.com/hkznG3DMYXi_kP8KjMkB_Fxn8jV3GMPQ9QBax71ydK7qhIN9wnd7FfZfilG9B7zy7EAce-iOVTJan54XCgTD1gbg1iUWBu3aYepGmg29i6SdBLGVYec3XjivBVyH7M2PLqevIju8Jw",
+        "url": "https://www.youtube.com/embed/X4XwqVflzII",
         "alt": "motor_control_calibration",
         "type": "video/mp4"
       },
@@ -127,7 +148,7 @@
       "hasVideo": true,
       "className": "videocontainer",
       "video": {
-        "url": "https://lh3.googleusercontent.com/DMrmF5HksTvP91CR7yW6ts3P2w6Dgx4XCaEmaFJlY-O-ceHBLDhZBS-1DjM_Fe--PWwBN13iovXiSn-LjMz3HVe2RQjd77Ncwxxo-gL3e3bh3u-ws6B8RNGnIBBemPpHVqH_Or1Hqg",
+        "url": "https://www.youtube.com/embed/Th_-m-7L4sE",
         "alt": "flight_controller_receiving_command_from_a_joystick_and_a_potentiometer",
         "type": "video/mp4"
       },
@@ -136,7 +157,7 @@
       "hasVideo": true,
       "className": "videocontainer",
       "video": {
-        "url": "https://lh3.googleusercontent.com/5kIc3kuQDjAvDOGt1diUuko_oqgm7BCfWQbVPjGVIFtbiAjniiVXIvJj_37HZOYmMv1eXRNr-2gDDx8vUj6JlKqETug6ddGZfrPezR4nr92lJzOpMEyRw78i9mf_yQ3c4ELFf1aKtg",
+        "url": "https://www.youtube.com/embed/W4ZBTkW41b0",
         "alt": "last_test_before_mounting_it",
         "type": "video/mp4"
       },
@@ -145,7 +166,7 @@
       "hasVideo": true,
       "className": "videocontainer",
       "video": {
-        "url": "https://lh3.googleusercontent.com/pyXUS8bu_4Udhq2PhLUiJkx7O8ScMNqDxrq1ffaTUy7wWDgzMrzKh-xYIi6kZwaUV8QlUWtGHZOd7gHpCD06fGWuNRVPFNKbePbYYYlZoO7hpIJ8r-iLxQt0YngRnUk3JQ2CFHEMdQ",
+        "url": "https://www.youtube.com/embed/v7mnhUN35YA",
         "alt": "best_trys_for_now",
         "type": "video/mp4"
       },
@@ -154,7 +175,7 @@
       "hasVideo": true,
       "className": "videocontainer",
       "video": {
-        "url": "https://photos.google.com/u/1/share/AF1QipOXG2UoIgGFKhtWbonjN5atJHlrmLIWl3RXWwhABuRUz7PZKY8qdLn-d4MZs5l4-g/photo/AF1QipMIB7AI2YBiahSoY2-13tAJtx6CYqEL8ChZAM7q?key=a1JiNnVxTXo2ZDJxSkZxSnU2aDU5bk9OcXlXYUV3",
+        "url": "https://www.youtube.com/embed/u7G19sSJpMg",
         "alt": "compilation_of_fails",
         "type": "video/mp4"
       },
