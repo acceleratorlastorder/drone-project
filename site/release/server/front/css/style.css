@@ -112,7 +112,7 @@ article section picture {
   height: auto;
 }
 
-.isPortrait section img {
+article.isPortrait section img {
   height: auto;
   height: -moz-available;
   height: -webkit-fill-available;
@@ -120,7 +120,7 @@ article section picture {
   max-height: calc(100vh - 66vmin);
 }
 
-.isPortrait section picture {
+article.isPortrait section picture {
   display: flex;
 }
 
